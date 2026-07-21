@@ -19,5 +19,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: /www/
+          server-dir: ./www/
           # 위 줄의 맨 앞 '#'을 지우면 서버의 특정 폴더 안에만 파일이 올라가게 할 수 있습니다. (예: www, html 등)
