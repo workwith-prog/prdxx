@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -13,16 +12,15 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JVYQFV1VGL"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-JVYQFV1VGL');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JVYQFV1VGL');
     </script>
     <!-- End Google tag (gtag.js) -->
 
-    <!--네이버 서치 어드바이저 태그-->
+    <!-- 네이버 서치 어드바이저 태그 -->
     <meta name="naver-site-verification" content="24623ab97afb9972e0939f41a8c822e4b1ee4736" />
-    <!--End 네이버 서치 어드바이저 태그-->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,37 +36,31 @@
     <meta property="og:url" content="https://mortarheadd.agency/">
     <meta property="og:title" content="모터헤드 에이전시 | IMC 통합 마케팅, 크리에이티브 디자인 PRDXX">
     <meta property="og:description" content="PRDXX는 MORTARHEADD의 통합 마케팅(IMC) 및 크리에이티브 디자인 조직입니다. 브랜딩과 시각적 디자인부터 퍼포먼스 마케팅까지, 책임이 연결된 하나의 운영 엔진으로 브랜드의 매출과 성장을 설계합니다.">
-    <meta property="og:image" content="https://mortarheadd.agency/images/og-thumb.png"> <!-- 대표 썸네일 이미지 경로 -->
+    <meta property="og:image" content="https://mortarheadd.agency/images/og-thumb.png">
 
     <!-- 트위터/X 카드 -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="모터헤드 에이전시 | IMC 통합 마케팅, 크리에이티브 디자인 PRDXX">
     <meta name="twitter:description" content="PRDXX는 MORTARHEADD의 통합 마케팅(IMC) 및 크리에이티브 디자인 조직입니다. 브랜딩과 시각적 디자인부터 퍼포먼스 마케팅까지, 책임이 연결된 하나의 운영 엔진으로 브랜드의 매출과 성장을 설계합니다.">
     <meta name="twitter:image" content="https://mortarheadd.agency">
+    
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <!-- 폰트 연결 (중복 제거됨) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-
-    <!-- 외부 스타일시트 분리 연결 구역 -->
-    <link rel="stylesheet" href="/css/gateway_style.css" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-    
+    <!-- 스타일시트 및 라이브러리 연결 -->
+    <link rel="stylesheet" href="/css/gateway_style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K6RCSN3Q"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K6RCSN3Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
     <div class="gateway-wrapper">
         <div class="main-content">
             <div class="text-wrapper text-left-wrapper">
@@ -94,6 +86,7 @@
     </div>
 
     <script>
+        // 텍스트를 무작위로 섞는 함수
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -102,6 +95,7 @@
             return array;
         }
 
+        // 텍스트를 개별 문자 단위(span)로 쪼개는 함수
         function prepareText(elementId) {
             const el = document.getElementById(elementId);
             const text = el.textContent.trim();
@@ -136,7 +130,7 @@
 
                 const tl = gsap.timeline();
 
-                // 1단계: 알파벳 랜덤 등장 (공통)
+                // 1단계: 알파벳 랜덤 등장
                 tl.to(allChars, {
                     opacity: 1,
                     duration: 0.6,
@@ -144,8 +138,8 @@
                     ease: "power2.inOut"
                 });
 
+                // 2단계: 텍스트 이동 애니메이션 분기 처리
                 if (isDesktop) {
-                    // PC, 태블릿: 중앙에서 분리되는 애니메이션
                     tl.fromTo('#text-left', 
                         { x: 180 }, 
                         { x: 0, duration: 1.2, ease: "power4.inOut" }, 
@@ -157,12 +151,10 @@
                         "<"
                     );
                 } else {
-                    // 모바일: 분리 애니메이션 없이 정가운데 고정된 상태로 약간의 대기 시간만 가짐
-                    tl.set({}, {}, "+=0.2");
+                    tl.set({}, {}, "+=0.2"); // 모바일은 대기 시간만 가짐
                 }
 
-                // 3단계: 버튼 박스 Fade In
-                // 모바일은 텍스트 분리 애니메이션이 없으므로 타이밍을 조금 더 앞당김 (-=0.2)
+                // 3단계: 버튼 박스 등장
                 tl.to('.btn-container', {
                     opacity: 1,
                     duration: 0.8,

@@ -1415,7 +1415,7 @@ header.nav.scrolled{background:rgba(10,11,13,.8);backdrop-filter:blur(16px);bord
 .logos{padding:clamp(72px,9vw,120px) 0;background:#ffffff;color:var(--ink);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l)}
 .logos-h{font-size:clamp(38px,5vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:var(--ink)}
 .logos-h .b{color:var(--blue)}
-.logos-desc{margin-top:24px;max-width:620px;font-size:18px;line-height:1.7;color:#5a5e66}
+.logos-desc{margin-top:24px;font-size:18px;line-height:1.7;color:#5a5e66}
  
 .logo-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:var(--maxw);margin:54px auto 0}
 .brand-logo{background:none;border:none;border-radius:0;display:flex;align-items:center;justify-content:center;padding:14px;transition:transform 0.3s}
@@ -1866,102 +1866,60 @@ footer{background:#070809;padding:80px 0 44px;border-top:1px solid var(--line-d)
 
 
 
-
-
-
-
-
-
-
-
-
-
-/* 인스타그램 그리드 레이아웃 (기본 4열, 태블릿 3열, 모바일 2열) */
-.instagram-grid {
+#instagram-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  width: 100%;
+  grid-template-columns: repeat(4, 1fr); /* 4열 배열로 변경 */
+  gap: 15px; /* 이미지 사이 간격 */
+  margin-top: 10px;
 }
-
-.instagram-item {
-  position: relative;
-  width: 100%;
-  padding-top: 100%; /* 1:1 정방형 비율 유지 */
+#instagram-grid a {
+  display: block;
   overflow: hidden;
-  background-color: #111;
-  border-radius: 4px;
+  border-radius: 8px; /* 모서리 둥글게 */
 }
-
-.instagram-item a {
-  position: absolute;
-  top: 0;
-  left: 0;
+#instagram-grid img {
   width: 100%;
-  height: 100%;
-}
-
-.instagram-item img, 
-.instagram-item video {
-  width: 100%;
-  height: 100%;
+  aspect-ratio: 2 / 2.5; /* 정사각형 비율 유지 */
   object-fit: cover;
-  transition: transform 0.5s ease;
+  display: block;
+  transition: transform 0.3s ease;
+}
+#instagram-grid a:hover img {
+  transform: scale(1.05); /* 마우스 올렸을 때 살짝 커지는 효과 */
 }
 
-/* 마우스 호버 시 이미지 확대 및 오버레이 효과 */
-.instagram-item:hover img {
-  transform: scale(1.05);
-}
-
-.instagram-item .insta-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+/* 슬라이드 버튼 스타일 */
+.sns-btn {
+  background: transparent;
+  border: 1px solid #aaa;
+  color: #aaa;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 13px;
-  padding: 16px;
-  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+.sns-btn:hover {
+  background: #fff;
+  color: #333;
+  border-color: #333;
 }
 
-.instagram-item:hover .insta-overlay {
-  opacity: 1;
-}
-
-.instagram-item .insta-caption {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.5;
-  text-align: center;
-}
-
-/* 반응형 미디어 쿼리 */
-@media (max-width: 991px) {
-  .instagram-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-}
-
-@media (max-width: 575px) {
-  .instagram-grid {
+/* 모바일 화면에서는 2열로 변경 */
+@media (max-width: 768px) {
+  #instagram-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
   }
-  .instagram-item .insta-overlay {
-    display: none; /* 모바일에서는 성능 및 가독성을 위해 오버레이 숨김 */
+  .sns-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  .sns-controls {
+    align-self: flex-end;
   }
 }
-
 

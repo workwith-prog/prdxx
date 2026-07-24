@@ -37,16 +37,17 @@ body, html {
 .text-wrapper {
     display: flex;
 }
+
 .text-left-wrapper {
     justify-content: flex-end;
 }
+
 .text-right-wrapper {
     justify-content: flex-start;
 }
 
-/* 유동적 폰트 타이포그래피 (1800px 이하부터 부드럽게 축소) */
+/* 유동적 폰트 타이포그래피 */
 .brand-text {
-    /* clamp(최소 크기, 유동 크기, 최대 크기) 적용 */
     font-size: clamp(42px, 4.7vw, 85px);
     font-weight: 700;
     text-transform: uppercase;
@@ -94,12 +95,15 @@ body, html {
     overflow: hidden;
 }
 
+/* Marketing 버튼 스타일 */
 .btn-without {
     border-radius: 0px;
 }
-.btn-without:hover{
-    color : #3b43fc;
+
+.btn-without:hover {
+    color: #3b43fc;
 }
+
 .btn-without::after {
     content: '';
     position: absolute;
@@ -108,26 +112,24 @@ body, html {
     right: 14px;
     height: 1px;
     background-color: #3b43fc;
-    /* 1. 처음에는 밑줄이 보이지 않도록 scaleX를 0으로 설정 */
     transform: scaleX(0); 
-    /* 2. 글을 읽는 방향인 왼쪽에서부터 선이 그려지도록 기준점 수정 */
     transform-origin: left center; 
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 .btn-without:hover::after {
-    /* 3. 롤오버 시 밑줄이 나타나도록 scaleX를 1로 설정 */
     transform: scaleX(1); 
 }
 
+/* Creative 버튼 스타일 */
 .btn-with {
     background-color: #ffffff;
     color: #000000;
     border-radius: 0px;
-    padding: 2px 16px; /* 효과를 위해 좌우 여백 세팅 */
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* 쫀득한 텐션의 이징 함수 */
+    padding: 2px 16px; 
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
 }
 
-/* ↵ 기호 초기 세팅 (숨김 & 우측으로 밀어둠) */
 .btn-with::after {
     content: '↵';
     position: absolute;
@@ -142,14 +144,12 @@ body, html {
 .btn-with:hover {
     background-color: #bfff00;
     text-decoration: none;
-    /* 텍스트를 왼쪽으로 6px 밀어내기 (좌측 패딩은 줄이고, 우측 패딩은 늘림) -> 버튼 전체 크기는 불변! */
     padding-left: 10px;
     padding-right: 22px; 
 }
 
 .btn-with:hover::after {
     opacity: 1;
-    /* 기호가 등장하며 원래 자리로 */
     transform: translateY(-50%) translateX(0);
 }
 
@@ -169,20 +169,18 @@ body, html {
 }
 
 /* ==========================================================================
-    태블릿 & 모바일 반응형: 여백 확보 및 폰트 유연성 강화
-    ========================================================================== */
+    태블릿 & 모바일 반응형
+   ========================================================================== */
 @media (max-width: 900px) {
     .main-content {
         grid-template-columns: auto auto; 
-        justify-content: center; 
         grid-template-rows: auto auto;
+        justify-content: center; 
         gap: 15px 0px; 
-        /* [해결 포인트 1] 명확한 양옆 여백 강제 할당 */
         padding: 0 40px; 
     }
 
     .brand-text {
-        /* [해결 포인트 2] 모바일에서 단어가 여백을 밀어내지 않도록 최소 크기를 20px까지 대폭 하향 */
         font-size: clamp(36px, 6.5vw, 42px); 
     }
 
@@ -197,7 +195,7 @@ body, html {
     .button-box {
         width: 100%;
         max-width: 480px;
-        padding: 10px 16px; /* 버튼 상자 여백 최적화 */
+        padding: 10px 16px; 
         gap: 15px;
     }
 
@@ -213,22 +211,25 @@ body, html {
     }
 }
 
-/* 480px 이하 좁은 모바일 화면 (아이폰 미니, SE 등) 디테일 제어 */
+/* 480px 이하 좁은 모바일 화면 */
 @media (max-width: 480px) {
     .main-content {
-        padding: 0 24px; /* 아주 좁은 화면에서는 여백을 살짝 타이트하게 */
+        padding: 0 24px; 
         gap: 12px 10px;
     }
+    
     .brand-text {
         font-size: clamp(22px, 8vw, 32px); 
     }
+    
     .button-box {
-        flex-direction: row; /* 버튼을 가로로 유지 */
+        flex-direction: row; 
         padding: 10px 16px;
         gap: 8px;
     }
+    
     .enter-link {
-        font-size: 11px; /* 텍스트가 겹치지 않게 버튼 폰트 축소 */
+        font-size: 11px; 
         padding: 4px 6px;
     }
 }
