@@ -1299,6 +1299,8 @@ h3 {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  min-height: auto;
+  height: auto;
 }
 
 /* 1. 상단 타이포그래피 */
