@@ -8,11 +8,11 @@ const instagramFallbackPosts = [
 ];
 
 const serviceVisuals = {
-  concept: "linear-gradient(135deg, #2828ff 0%, #9da0ff 48%, #f2ff57 100%)",
-  poster: "linear-gradient(135deg, #ff4814 0%, #2828ff 55%, #111 100%)",
-  motion: "radial-gradient(circle at 30% 28%, #f2ff57 0 18%, transparent 19%), linear-gradient(135deg, #111 0%, #2828ff 100%)",
-  campaign: "linear-gradient(90deg, #2828ff 0 18%, #f2ff57 18% 36%, #ff4814 36% 58%, #f7f7f4 58% 78%, #111 78%)",
-  digital: "repeating-linear-gradient(45deg, #2828ff 0 18px, #f2ff57 18px 36px, #111 36px 54px)"
+  poster: "url('/images/creative/service/img_service_02.jpg')",
+  motion: "url('/images/creative/service/img_service_03.jpg')",
+  campaign: "url('/images/creative/service/img_service_04.jpg')",
+  digital: "url('/images/creative/service/img_service_05.jpg')",
+  concept: "url('/images/creative/service/img_service_01.jpg')"
 };
 
 function initRevealAnimation() {
@@ -88,7 +88,11 @@ function initServicesAccordion() {
         // 프리뷰 이미지 변경 스크립트 연동 (기존 기획 유지)
         if (preview && previewImage) {
           const key = item.dataset.service;
-          previewImage.style.background = serviceVisuals[key] || serviceVisuals.concept;
+          const targetImage = serviceVisuals[key] || serviceVisuals.concept;
+          previewImage.style.backgroundImage = targetImage;
+          previewImage.style.backgroundSize = "cover";
+          previewImage.style.backgroundPosition = "center";
+          previewImage.style.backgroundRepeat = "no-repeat";
           preview.classList.add("is-visible");
         }
       } else {
