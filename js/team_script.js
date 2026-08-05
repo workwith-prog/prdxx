@@ -70,7 +70,7 @@ function resize() {
 }
 
 function origin() {
-  if (w < 900) return { x: w * 0.56, y: h * 0.56 };
+  if (w < 900) return { x: w * 0.5, y: h * 0.82 };
   return { x: w * 0.43, y: h * 0.565 };
 }
 

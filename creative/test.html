@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <!--이거 본방 반영 하기 전에 무조건 지워야 함.-->
+  <!-- 본방 반영 전 삭제 대상 -->
   <meta name="robots" content="noindex, nofollow">
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-K6RCSN3Q');</script>
-  <!-- End Google Tag Manager -->
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JVYQFV1VGL"></script>
@@ -19,42 +19,36 @@
     gtag('js', new Date());
     gtag('config', 'G-JVYQFV1VGL');
   </script>
-  <!-- End Google tag (gtag.js) -->
 
-  <!--네이버 서치 어드바이저 태그-->
+  <!-- 네이버 서치 어드바이저 -->
   <meta name="naver-site-verification" content="24623ab97afb9972e0939f41a8c822e4b1ee4736" />
-  <!--End 네이버 서치 어드바이저 태그-->
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- 외부 스타일시트 분리 연결 구역 -->
-  <link rel="stylesheet" href="/css/style_creative.css">
-
-  <!-- 기본 검색 엔진용 메타 태그 -->
   <title>PRDXX | CREATIVE DESIGN</title>
   <meta name="description" content="PRDXX는 MORTARHEADD의 통합 마케팅(IMC) 및 크리에이티브 디자인 조직입니다. 브랜딩과 시각적 디자인부터 퍼포먼스 마케팅까지, 책임이 연결된 하나의 운영 엔진으로 브랜드의 매출과 성장을 설계합니다." />
   <meta name="keywords" content="MORTARHEADD, 모터헤드, PRDXX, IMC, 브랜드 전략, 크리에이티브, 미디어 운영, 데이터 분석, 디지털 마케팅, UIUX 디자인, 웹 기획">
   <link rel="canonical" href="https://mortarheadd.agency/">
 
-  <!-- 소셜 미디어 공유용 (Open Graph) -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mortarheadd.agency/">
   <meta property="og:title" content="PRDXX | CREATIVE DESIGN">
   <meta property="og:description" content="PRDXX는 MORTARHEADD의 통합 마케팅(IMC) 및 크리에이티브 디자인 조직입니다. 브랜딩과 시각적 디자인부터 퍼포먼스 마케팅까지, 책임이 연결된 하나의 운영 엔진으로 브랜드의 매출과 성장을 설계합니다.">
-  <meta property="og:image" content="https://mortarheadd.agency/images/og-thumb.png"> <!-- 대표 썸네일 이미지 경로 -->
-
-  <!-- 트위터/X 카드 -->
+  <meta property="og:image" content="https://mortarheadd.agency/images/og-thumb.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PRDXX | CREATIVE DESIGN">
   <meta name="twitter:description" content="PRDXX는 MORTARHEADD의 통합 마케팅(IMC) 및 크리에이티브 디자인 조직입니다. 브랜딩과 시각적 디자인부터 퍼포먼스 마케팅까지, 책임이 연결된 하나의 운영 엔진으로 브랜드의 매출과 성장을 설계합니다.">
   <meta name="twitter:image" content="https://mortarheadd.agency">
+
+  <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="/css/style_creative.css">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-
 </head>
 
 <body>
@@ -63,7 +57,13 @@
       <img src="/images/creative/prdxx.svg" alt="PRDXX">
     </a>
 
-    <nav class="nav" aria-label="Primary navigation">
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav" id="siteNav" aria-label="Primary navigation">
       <a href="#about">About</a>
       <a href="#pipeline">Pipeline</a>
       <a href="#services">Services</a>
@@ -81,66 +81,39 @@
       </div>
 
       <div class="bs-cards-grid">
-        
         <div class="bs-card-col scroll-slow">
           <div class="bs-card h-left-fixed">
-            <div class="card-meta-overlay">
-              <span class="meta-title">Artistry</span>
-            </div>
-            <div class="card-media-placeholder">
-              <img src="/images/portfolio/list_artistry.jpg">
-            </div>
+            <div class="card-meta-overlay"><span class="meta-title">Artistry</span></div>
+            <div class="card-media-placeholder"><img src="/images/portfolio/list_artistry.jpg" alt="Artistry"></div>
           </div>
           <div class="bs-card h-left-fixed">
-            <div class="card-meta-overlay">
-              <span class="meta-title">Hyundai Mobed</span>
-            </div>
-            <div class="card-media-placeholder">
-              <img src="/images/portfolio/list_mobed.jpg">
-            </div>
+            <div class="card-meta-overlay"><span class="meta-title">Hyundai Mobed</span></div>
+            <div class="card-media-placeholder"><img src="/images/portfolio/list_mobed.jpg" alt="Hyundai Mobed"></div>
           </div>
           <div class="bs-card h-left-fixed">
-            <div class="card-meta-overlay">
-              <span class="meta-title">Samsung</span>
-            </div>
-            <div class="card-media-placeholder">
-              <img src="/images/portfolio/list_samsung.jpg">
-            </div>
+            <div class="card-meta-overlay"><span class="meta-title">Samsung</span></div>
+            <div class="card-media-placeholder"><img src="/images/portfolio/list_samsung.jpg" alt="Samsung"></div>
           </div>
           <div class="bs-card h-left-fixed">
-            <div class="card-meta-overlay">
-              <span class="meta-title">Would you like me</span>
-            </div>
-            <div class="card-media-placeholder">
-              <img src="/images/portfolio/list_wouldyou.jpg">
-            </div>
+            <div class="card-meta-overlay"><span class="meta-title">Would you like me</span></div>
+            <div class="card-media-placeholder"><img src="/images/portfolio/list_wouldyou.jpg" alt="Would you like me"></div>
           </div>
         </div>
 
         <div class="bs-card-col scroll-normal">
           <div class="bs-card h-mid-1">
-            <div class="card-meta-overlay">
-              <span class="meta-title"></span>
-            </div>
+            <div class="card-meta-overlay"><span class="meta-title"></span></div>
             <div class="card-media-placeholder accent-bg">
               <div class="placeholder-text-graphic">/MORTARHEADD]</div>
             </div>
           </div>
           <div class="bs-card h-mid-2">
-            <div class="card-meta-overlay">
-              <span class="meta-title">Sulwhasoo</span>
-            </div>
-            <div class="card-media-placeholder">
-              <img src="/images/portfolio/img_work_shs.jpg">
-            </div>
+            <div class="card-meta-overlay"><span class="meta-title">Sulwhasoo</span></div>
+            <div class="card-media-placeholder"><img src="/images/portfolio/img_work_shs.jpg" alt="Sulwhasoo"></div>
           </div>
           <div class="bs-card h-mid-3">
-            <div class="card-meta-overlay">
-              <span class="meta-title">Dongwha</span>
-            </div>
-            <div class="card-media-placeholder">
-              <img src="/images/portfolio/img_work_donghwa.jpg">
-            </div>
+            <div class="card-meta-overlay"><span class="meta-title">Dongwha</span></div>
+            <div class="card-media-placeholder"><img src="/images/portfolio/img_work_donghwa.jpg" alt="Dongwha"></div>
           </div>
         </div>
 
@@ -152,15 +125,12 @@
             </div>
           </div>
           <div class="bs-card h-right-2">
-            <div class="card-meta-overlay">
-              <span class="meta-title">Showreel 02</span>
-            </div>
+            <div class="card-meta-overlay"><span class="meta-title">Showreel 02</span></div>
             <div class="card-media-placeholder">
               <video autoplay muted loop playsinline src="https://mortarheadd.agency/video/ott_hero.mp4"></video>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -169,7 +139,6 @@
         <div class="slogan-line">THE IMAGE BEFORE</div>
         <div class="slogan-line">THE STORY BEGINS.</div>
       </div>
-
       <div class="slogan-band">
         <div class="slogan-line slogan-right">THE IMAGE AFTER</div>
         <div class="slogan-line slogan-right">THE STORY ENDS.</div>
@@ -179,7 +148,6 @@
     <section class="section about-section fullscreen-section blue-section" id="about">
       <div class="team-animation-host" aria-hidden="true">
         <canvas id="field"></canvas>
-
         <div class="team-label team-label-pre" id="label-pre">
           <strong>PRE-PRODUCTION</strong>
           <span>CONCEPT ART</span>
@@ -187,14 +155,12 @@
           <span>STYLEFRAME</span>
           <span>VISUAL DEVELOPMENT</span>
         </div>
-
         <div class="team-label team-label-digital" id="label-digital">
           <strong>DIGITAL CAMPAIGN</strong>
           <span>KEY VISUAL</span>
           <span>DIGITAL BANNER</span>
           <span>OOH</span>
         </div>
-
         <div class="team-label team-label-post" id="label-post">
           <strong>POST-PRODUCTION</strong>
           <span>POSTER ART</span>
@@ -225,7 +191,6 @@
 
       <div class="pipeline-intro">
         <h2 class="reveal-up">Read.<br>Build.<br>Deliver.</h2>
-
         <div class="pipeline-desc reveal-up">
           <p class="desc-en">
             We read the context, build the visual language, and extend the work across channels.
@@ -242,39 +207,22 @@
       <div class="pipeline-cards">
         <article class="pipeline-card reveal-up">
           <h3>PRE-PRODUCTION</h3>
-          <p>
-            We define the structure and direction of the project first.
-            This is where the frame, characters, and spaces are organized.
-          </p>
-          <p class="pipeline-card-ko">
-            프로젝트의 구조와 방향 설계. 장면, 캐릭터, 공간의 기준을 확립
-          </p>
+          <p>We define the structure and direction of the project first. This is where the frame, characters, and spaces are organized.</p>
+          <p class="pipeline-card-ko">프로젝트의 구조와 방향 설계. 장면, 캐릭터, 공간의 기준을 확립</p>
           <img class="pipeline-icon floating-icon" src="/images/creative/pip_pre.svg" alt="">
         </article>
 
         <article class="pipeline-card reveal-up">
           <h3>POST-PRODUCTION</h3>
-          <p>
-            We shape the prepared elements into finished visuals.
-            This is where posters, titles, and key visuals take their final form.
-          </p>
-          <p class="pipeline-card-ko">
-            설계 요소들을 하나의 내러티브로 엮어 시각화. 포스터, 타이틀, 키비주얼 등을
-            일관된 시각 언어로 산출
-          </p>
+          <p>We shape the prepared elements into finished visuals. This is where posters, titles, and key visuals take their final form.</p>
+          <p class="pipeline-card-ko">설계 요소들을 하나의 내러티브로 엮어 시각화. 포스터, 타이틀, 키비주얼 등을 일관된 시각 언어로 산출</p>
           <img class="pipeline-icon floating-icon" src="/images/creative/pip_post.svg" alt="">
         </article>
 
         <article class="pipeline-card reveal-up">
           <h3>DIGITAL MARKETING</h3>
-          <p>
-            We extend finished content across multiple touchpoints.
-            This is where digital channels connect the work, the brand, and the audience.
-          </p>
-          <p class="pipeline-card-ko">
-            완성된 콘텐츠를 여러 접점으로 확장. 작품과 브랜드, 그리고 사람을 잇는
-            디지털 채널을 설계
-          </p>
+          <p>We extend finished content across multiple touchpoints. This is where digital channels connect the work, the brand, and the audience.</p>
+          <p class="pipeline-card-ko">완성된 콘텐츠를 여러 접점으로 확장. 작품과 브랜드, 그리고 사람을 잇는 디지털 채널을 설계</p>
           <img class="pipeline-icon floating-icon" src="/images/creative/pip_digital.svg" alt="">
         </article>
       </div>
@@ -292,12 +240,9 @@
           <article class="service-item" data-service="concept">
             <button class="service-trigger" type="button">Concept Art</button>
             <div class="service-panel">
-              <p class="service-lead">
-                Visual development for stories, worlds, and moods before they take shape.
-              </p>
-              <p class="service-ko">
-                이야기와 세계관, 정서를 이미지로 구체화하는 프리프로덕션 비주얼 개발.
-              </p>
+              <div class="mobile-service-img"></div>
+              <p class="service-lead">Visual development for stories, worlds, and moods before they take shape.</p>
+              <p class="service-ko">이야기와 세계관, 정서를 이미지로 구체화하는 프리프로덕션 비주얼 개발.</p>
               <ul>
                 <li>Background / Environment Design — 배경, 공간, 콘셉트 비주얼</li>
                 <li>Character Design — 캐릭터 디자인, 의상 실루엣 및 방향</li>
@@ -312,12 +257,9 @@
           <article class="service-item" data-service="poster">
             <button class="service-trigger" type="button">Poster Art</button>
             <div class="service-panel">
-              <p class="service-lead">
-                Key visuals and poster systems that define how a project is first seen.
-              </p>
-              <p class="service-ko">
-                작품의 첫인상과 정체성을 압축해 전달하는 키아트 및 포스터 비주얼 시스템.
-              </p>
+              <div class="mobile-service-img"></div>
+              <p class="service-lead">Key visuals and poster systems that define how a project is first seen.</p>
+              <p class="service-ko">작품의 첫인상과 정체성을 압축해 전달하는 키아트 및 포스터 비주얼 시스템.</p>
               <ul>
                 <li>Poster Design — 메인 포스터, 티저 포스터, 캐릭터 포스터</li>
                 <li>Moving Poster — 모션 포스터</li>
@@ -333,12 +275,9 @@
           <article class="service-item" data-service="motion">
             <button class="service-trigger" type="button">Motion Graphic</button>
             <div class="service-panel">
-              <p class="service-lead">
-                Opening, episodic, and credit-based motion graphics that frame the identity of a project.
-              </p>
-              <p class="service-ko">
-                오프닝부터 크레딧 끝까지 작품의 인상을 완성하는 타이틀·모션 디자인.
-              </p>
+              <div class="mobile-service-img"></div>
+              <p class="service-lead">Opening, episodic, and credit-based motion graphics that frame the identity of a project.</p>
+              <p class="service-ko">오프닝부터 크레딧 끝까지 작품의 인상을 완성하는 타이틀·모션 디자인.</p>
               <ul>
                 <li>Opening Title — 오프닝 타이틀</li>
                 <li>Episodic Title — 에피소드 타이틀 카드 디자인·모션</li>
@@ -353,12 +292,9 @@
           <article class="service-item" data-service="campaign">
             <button class="service-trigger" type="button">Campaign Visual</button>
             <div class="service-panel">
-              <p class="service-lead">
-                Campaign visuals built to connect stories, brands, and audiences with a clear message.
-              </p>
-              <p class="service-ko">
-                작품·브랜드와 대중을 하나의 메시지로 연결하는 캠페인 비주얼 기획 제작.
-              </p>
+              <div class="mobile-service-img"></div>
+              <p class="service-lead">Campaign visuals built to connect stories, brands, and audiences with a clear message.</p>
+              <p class="service-ko">작품·브랜드와 대중을 하나의 메시지로 연결하는 캠페인 비주얼 기획 제작.</p>
               <ul>
                 <li>Campaign Key Visual — 캠페인 메인 비주얼</li>
                 <li>Brand Visual Asset — 브랜드 및 프로젝트 비주얼 에셋</li>
@@ -371,12 +307,9 @@
           <article class="service-item" data-service="digital">
             <button class="service-trigger" type="button">Digital Contents</button>
             <div class="service-panel">
-              <p class="service-lead">
-                Still and motion assets tailored for banners, social platforms, and digital campaigns.
-              </p>
-              <p class="service-ko">
-                배너, SNS, 디지털 캠페인 환경에 맞춰 설계하는 스틸 및 모션 콘텐츠 전반.
-              </p>
+              <div class="mobile-service-img"></div>
+              <p class="service-lead">Still and motion assets tailored for banners, social platforms, and digital campaigns.</p>
+              <p class="service-ko">배너, SNS, 디지털 캠페인 환경에 맞춰 설계하는 스틸 및 모션 콘텐츠 전반.</p>
               <ul>
                 <li>Digital Banner Set — 웹/앱 광고 배너 세트</li>
                 <li>SNS Still Contents — SNS용 스틸 이미지 콘텐츠</li>
@@ -397,285 +330,9 @@
 
       <div class="insta-isolated-slider-container">
         <button class="insta-arrow-btn prev" id="slider-prev-btn" type="button" aria-label="Previous works">‹</button>
-        
         <div id="instafeed"></div>
-        
         <button class="insta-arrow-btn next" id="slider-next-btn" type="button" aria-label="Next works">›</button>
       </div>
-
-      <style>
-        /* 슬라이더 전체 영역 제한 및 정렬 */
-        .insta-isolated-slider-container {
-          position: relative;
-          width: 100%;
-          margin: 50px 0;
-          padding: 0;
-          display: block; /* 부모가 flex로 오작동하는 것을 방지 */
-          box-sizing: border-box;
-        }
-
-        /* 인스타 피드 가로 나열 그릇 */
-        #instafeed {
-          display: flex !important; /* 무조건 가로 정렬 강제 */
-          flex-direction: row !important;
-          gap: 20px; /* 이미지 간격 */
-          overflow-x: auto; /* 가로 스크롤 허용 */
-          scroll-behavior: smooth;
-          width: 100%;
-          padding: 10px 0;
-          margin: 0;
-          list-style: none;
-        }
-        
-        #instafeed:active {
-          cursor: grabbing; /* 클릭해서 쥐었을 때 손바닥 모양 (추가) */
-        }
-
-        /* 크롬, 사파리 등 스크롤바 숨기기 */
-        #instafeed::-webkit-scrollbar {
-          display: none !important;
-        }
-        #instafeed {
-          -ms-overflow-style: none !important;
-          scrollbar-width: none !important;
-        }
-
-        /* 인스타 개별 피드 카드 (a 태그) */
-        #instafeed a {
-          flex: 0 0 calc(16.666% - 16.7px) !important; /* PC화면 기준 6개 노출 정밀 계산 */
-          width: calc(20% - 16.7px) !important;
-          box-sizing: border-box !important;
-          text-decoration: none !important;
-          display: flex !important;
-          flex-direction: column !important; /* 이미지가 위, 텍스트가 아래 */
-          gap: 12px;
-          color: #111 !important; /* 글자 색상 */
-        }
-
-        /* 인스타 이미지 */
-        #instafeed img {
-          width: 100% !important;
-          max-width: 100% !important;
-          aspect-ratio: 1 / 1 !important; /* 정사각형 유지 */
-          object-fit: cover !important;
-          transition: transform 0.3s ease;
-          display: block !important;
-          margin: 0;
-          padding: 0;
-        }
-
-        /* 이미지 호버 효과 */
-        #instafeed a:hover img {
-          transform: scale(1.03);
-        }
-
-        /* 이미지 아래에 한 줄로 나올 글자 스타일 */
-        .insta-caption {
-          font-size: 14px !important;
-          line-height: 1.4 !important;
-          font-weight: 500 !important;
-          white-space: nowrap !important; /* 한 줄 강제 */
-          overflow: hidden !important; /* 넘치는 글자 숨김 */
-          text-overflow: ellipsis !important; /* ... 처리 */
-          width: 70% !important;
-          text-align: left !important;
-          display: block !important;
-        }
-
-        /* 양옆 화살표 버튼 스타일 (부모 영역 중앙에 배치) */
-        .insta-arrow-btn {
-          position: absolute;
-          top: calc(50% - 30px); /* 텍스트 영역을 제외한 이미지 기준 중앙 정렬 */
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          background-color: #ffffff;
-          border: 1px solid #dddddd;
-          font-size: 26px;
-          color: #333333;
-          cursor: pointer;
-          display: flex !important;
-          align-items: center;
-          justify-content: center;
-          z-index: 99;
-          box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-          transition: background-color 0.2s, transform 0.2s;
-          padding: 0 0 4px 0; /* 기호 센터 보정 */
-        }
-
-        .insta-arrow-btn:hover {
-          background-color: #f7f7f7;
-        }
-
-        /* 화살표 버튼 위치 */
-        .insta-arrow-btn.prev {
-          left: -22px;
-        }
-        .insta-arrow-btn.next {
-          right: -22px;
-        }
-
-        
-
-        /* 반응형: 태블릿화면 (화면에 3개 노출) */
-        @media (max-width: 1024px) {
-          #instafeed a {
-            flex: 0 0 calc(33.333% - 13.4px) !important;
-            width: calc(33.333% - 13.4px) !important;
-          }
-        }
-        
-        /* 반응형: 모바일화면 (화면에 2개 노출) */
-        @media (max-width: 768px) {
-          #instafeed a {
-            flex: 0 0 calc(50% - 10px) !important;
-            width: calc(50% - 10px) !important;
-          }
-          .insta-arrow-btn.prev { left: -5px; }
-          .insta-arrow-btn.next { right: -5px; }
-          .insta-arrow-btn {
-            width: 36px;
-            height: 36px;
-            font-size: 20px;
-          }
-        }
-      </style>
-
-      <script>
-        const ACCESS_TOKEN = 'IGAAoZCjdDsg6dBZAFllMjB1eWpDVzZACcjZAoZAEhJcFQzZAkRqd3lGNkhZAWVJ0eVBCZA3BjZAVk1a0hNbHR4a3NZARVpQdzZAVWFg2NFVfSkNUUldPaFkwc0NqbHdQM0pzVUsxTVNGbFJkbVVnTHQtZAG9JcVE3cEYtU2xIVlgySWJnOFI3SQZDZD';
-        // 앞서 해결했던 영상 썸네일 표시를 위해 thumbnail_url 추가
-        const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
-        const url = `https://graph.instagram.com/me/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
-
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                const grid = document.getElementById('instafeed');
-                
-                if (!data || !data.data) {
-                    console.error('인스타그램 데이터를 찾을 수 없습니다.', data);
-                    return;
-                }
-
-                const feeds = data.data.slice(0, 12); 
-
-                feeds.forEach(feed => {
-                    if (feed.media_url) {
-                        const anchor = document.createElement('a');
-                        anchor.href = feed.permalink;
-                        anchor.target = '_blank';
-
-                        // 1. 영상인 경우 썸네일, 이미지인 경우 원본 URL 사용 (이전 트러블슈팅 반영)
-                        const imageUrl = feed.media_type === 'VIDEO' ? feed.thumbnail_url : feed.media_url;
-
-                        if (imageUrl) {
-                            const img = document.createElement('img');
-                            img.src = imageUrl;
-                            img.alt = feed.caption || 'Instagram Image';
-                            anchor.appendChild(img);
-                        }
-
-                        // 2. 캡션(글) 요소 생성 및 삽입
-                        const captionDiv = document.createElement('div');
-                        captionDiv.className = 'insta-caption';
-                        captionDiv.textContent = feed.caption || ''; 
-                        anchor.appendChild(captionDiv);
-
-                        grid.appendChild(anchor);
-                    }
-                });
-
-                initSlider();
-            })
-            .catch(error => console.error('인스타그램 피드를 가져오는데 실패했습니다:', error));
-
-        function initSlider() {
-            const grid = document.getElementById('instafeed');
-            const prevBtn = document.getElementById('slider-prev-btn');
-            const nextBtn = document.getElementById('slider-next-btn');
-
-            if(!grid || !prevBtn || !nextBtn) return;
-
-            const getScrollAmount = () => grid.clientWidth * 0.8;
-
-            // --- 1. 좌우 화살표 버튼 스크롤 (처음/끝 도달 시 순환 로직 추가) ---
-            nextBtn.addEventListener('click', () => {
-                grid.style.scrollBehavior = 'smooth';
-                
-                // 최대 스크롤 가능 영역 계산
-                const maxScroll = grid.scrollWidth - grid.clientWidth;
-                
-                // 현재 스크롤 위치가 끝에 도달했는지 확인 (브라우저 소수점 오차를 고려해 -5px 여유)
-                if (grid.scrollLeft >= maxScroll - 5) {
-                    grid.scrollLeft = 0; // 맨 처음으로 이동
-                } else {
-                    grid.scrollLeft += getScrollAmount();
-                }
-            });
-
-            prevBtn.addEventListener('click', () => {
-                grid.style.scrollBehavior = 'smooth';
-                
-                // 현재 스크롤 위치가 맨 앞인지 확인
-                if (grid.scrollLeft <= 5) {
-                    grid.scrollLeft = grid.scrollWidth; // 맨 끝으로 이동
-                } else {
-                    grid.scrollLeft -= getScrollAmount();
-                }
-            });
-
-            // --- 2. 마우스 드래그 스크롤 ---
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-            let isDragging = false;
-
-            grid.addEventListener('mousedown', (e) => {
-                isDown = true;
-                isDragging = false; 
-                grid.style.scrollBehavior = 'auto'; 
-                startX = e.pageX - grid.offsetLeft;
-                scrollLeft = grid.scrollLeft;
-            });
-
-            grid.addEventListener('mouseleave', () => {
-                isDown = false;
-                grid.style.scrollBehavior = 'smooth'; 
-            });
-
-            grid.addEventListener('mouseup', () => {
-                isDown = false;
-                grid.style.scrollBehavior = 'smooth'; 
-            });
-
-            grid.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault(); 
-                
-                const x = e.pageX - grid.offsetLeft;
-                const walk = (x - startX) * 2; 
-                
-                if (Math.abs(walk) > 5) {
-                    isDragging = true; 
-                }
-                
-                grid.scrollLeft = scrollLeft - walk;
-            });
-
-            // --- 3. 드래그 후 발생하는 부작용 방지 ---
-            const links = grid.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    if (isDragging) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                    }
-                });
-                
-                link.addEventListener('dragstart', (e) => e.preventDefault());
-            });
-        }
-      </script>
 
       <a class="latest-link" href="https://www.instagram.com/mortarheadd_creative/" target="_blank" rel="noopener">
         <span class="latest-line">VIEW</span>
@@ -695,12 +352,8 @@
         <div class="contact-left">
           <div class="contact-copy reveal-up">
             <h2>GET IN TOUCH</h2>
-            <p class="contact-desc-en">
-              For partnerships, project collaborations, feel free to reach out anytime.
-            </p>
-            <p class="contact-desc-ko">
-              함께할 프로젝트가 있다면 편하게 문의해 주세요.
-            </p>
+            <p class="contact-desc-en">For partnerships, project collaborations, feel free to reach out anytime.</p>
+            <p class="contact-desc-ko">함께할 프로젝트가 있다면 편하게 문의해 주세요.</p>
           </div>
 
           <div class="contact-info">
@@ -770,7 +423,7 @@
         </div>
 
         <div class="footer-col footer-vfx">
-          <p>MORTARHEADD VFX</p>
+          <a href="https://mortarheadd.studio/" target="_blank" rel="noopener">MORTARHEADD VFX</a>
         </div>
       </div>
 
@@ -804,46 +457,5 @@
 
   <script src="/js/team_script.js"></script>
   <script src="/js/test.js"></script>
-  
-  <script type="text/javascript">
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // 폼 기본 제출(페이지 새로고침) 막기
-
-      const submitButton = this.querySelector('.form-submit');
-      submitButton.textContent = 'SENDING...';
-      submitButton.disabled = true;
-
-      // HTML Form 데이터를 FormData 객체로 변환 후 URL 인코딩 처리
-      const formData = new FormData(this);
-      const searchParams = new URLSearchParams(formData);
-
-      // 사용자가 제공한 Google Apps Script 배포 URL
-      const gasUrl = "https://script.google.com/macros/s/AKfycbyJr2gnL_hnhtUdMc3AUBtH4mvpM2AZyBSiiCxqlsDrQv68CfrGHcaBG6IhQaddpvKS/exec";
-
-      // GAS로 데이터 전송 (CORS 처리를 위해 mode: 'no-cors' 활용 가능)
-      fetch(gasUrl, {
-        method: 'POST',
-        body: searchParams,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      })
-      .then(response => {
-        // no-cors 모드 특성상 response.ok 체크가 불가능할 수 있으므로 성공으로 가정하거나 
-        // 완벽한 JSON 응답을 받으려면 GAS와 도메인 설정을 확인해야 합니다. 일반적인 폼 전송은 이대로 처리됩니다.
-        alert('문의가 성공적으로 접수되었습니다!');
-        document.getElementById('contactForm').reset(); // 폼 초기화
-      })
-      .catch(error => {
-        alert('전송 중 에러가 발생했습니다. 다시 시도해 주세요.');
-        console.error('Error:', error);
-      })
-      .finally(() => {
-        submitButton.textContent = 'SEND';
-        submitButton.disabled = false;
-      });
-    });
-  </script>
 </body>
-
 </html>
