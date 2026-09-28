@@ -1,12 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap");
 
-@font-face {
-  font-family: "Pretendard";
-  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2");
-  font-weight: 45 920;
-  font-style: normal;
-  font-display: swap;
-}
 
 :root {
   --black: #111;
@@ -1439,4 +1432,45 @@ p, h1, h2, h3 {
   }
 
   .footer-time { display: none !important; }
+}
+
+
+/* --- 슬라이딩 패널 효과 CSS --- */
+.card-media-placeholder {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 개별 미디어 래퍼 스타일 및 트랜지션 설정 */
+.slide-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* 맥OS 느낌의 부드럽고 탄력 있는 슬라이딩 곡선 (Cubic Bezier) */
+  transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1); 
+  z-index: 1;
+}
+
+.slide-item.active {
+  transform: translateY(0);
+  z-index: 2;
+}
+
+/* 다음에 올라올 이미지 (아래에 대기) */
+.slide-item.next {
+  transform: translateY(100%);
+  z-index: 2;
+}
+
+/* 지나간 이미지 (위로 밀려남) */
+.slide-item.prev {
+  transform: translateY(-100%);
+  z-index: 1;
+}
+
+/* 타이틀 텍스트 페이드 효과 */
+.meta-title {
+  transition: opacity 0.4s ease;
 }

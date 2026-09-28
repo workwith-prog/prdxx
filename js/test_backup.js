@@ -312,7 +312,7 @@ function initObjectInsideParallax() {
   animateObjects();
 }
 
-/* 8. Random Cards Generator (슬라이딩 패널 효과 적용) */
+/* 8. Random Cards Generator */
 function initRandomCards() {
   const mediaAssets = [
     { type: 'image', src: '/images/creative/main_top/img_01.jpg', title: 'Radio' },
@@ -339,7 +339,6 @@ function initRandomCards() {
     { type: 'text', text: '/MORTARHEADD]', bgColor: '#ff0000', title: '' }
   ];
 
-  // 배열을 무작위로 섞는 유틸리티 함수
   function shuffleArray(array) {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -350,25 +349,27 @@ function initRandomCards() {
   }
 
   const cards = document.querySelectorAll('.bs-cards-grid .bs-card');
-  let currentAssets = shuffleArray(mediaAssets);
+  const shuffledAssets = shuffleArray(mediaAssets);
 
-  // 미디어 DOM을 생성하고 슬라이드 아이템으로 감싸는 함수
-  function createMediaElement(asset) {
-    const slideItem = document.createElement('div');
-    slideItem.className = 'slide-item next'; // 초기 상태는 아래에 대기
+  cards.forEach((card, index) => {
+    if (index >= shuffledAssets.length) return;
+    const asset = shuffledAssets[index];
+    const titleEl = card.querySelector('.meta-title');
+    const mediaContainer = card.querySelector('.card-media-placeholder');
 
-    if (asset.type === 'text') {
-      slideItem.classList.add('accent-bg');
-      if (asset.bgColor) slideItem.style.backgroundColor = asset.bgColor;
-      const textDiv = document.createElement('div');
-      textDiv.className = 'placeholder-text-graphic';
-      textDiv.textContent = asset.text;
-      slideItem.appendChild(textDiv);
-    } else if (asset.type === 'image') {
+    if (!mediaContainer) return;
+
+    if (titleEl) titleEl.textContent = asset.title;
+
+    mediaContainer.innerHTML = '';
+    mediaContainer.className = 'card-media-placeholder';
+    mediaContainer.style.backgroundColor = '';
+
+    if (asset.type === 'image') {
       const img = document.createElement('img');
       img.src = asset.src;
       img.alt = asset.title || '';
-      slideItem.appendChild(img);
+      mediaContainer.appendChild(img);
     } else if (asset.type === 'video') {
       const video = document.createElement('video');
       video.autoplay = true;
@@ -376,75 +377,16 @@ function initRandomCards() {
       video.loop = true;
       video.playsInline = true;
       video.src = asset.src;
-      slideItem.appendChild(video);
+      mediaContainer.appendChild(video);
+    } else if (asset.type === 'text') {
+      mediaContainer.classList.add('accent-bg');
+      if (asset.bgColor) mediaContainer.style.backgroundColor = asset.bgColor;
+      const textDiv = document.createElement('div');
+      textDiv.className = 'placeholder-text-graphic';
+      textDiv.textContent = asset.text;
+      mediaContainer.appendChild(textDiv);
     }
-    return slideItem;
-  }
-
-  // 1. 초기 화면 렌더링 (즉시 표시)
-  cards.forEach((card, index) => {
-    if (index >= currentAssets.length) return;
-    const asset = currentAssets[index];
-    const titleEl = card.querySelector('.meta-title');
-    const mediaContainer = card.querySelector('.card-media-placeholder');
-
-    if (!mediaContainer) return;
-    if (titleEl) titleEl.textContent = asset.title;
-
-    mediaContainer.innerHTML = ''; 
-    const initialSlide = createMediaElement(asset);
-    initialSlide.className = 'slide-item active'; // 처음엔 애니메이션 없이 바로 배치
-    mediaContainer.appendChild(initialSlide);
   });
-
-  // 2. 5초 단위로 화면 교체 로직 실행 (화면보호기 애니메이션)
-  setInterval(() => {
-    currentAssets = shuffleArray(mediaAssets);
-
-    cards.forEach((card, index) => {
-      // 모든 패널이 동시에 바뀌면 산만하므로, 0.12초 간격으로 순차적(Cascading) 애니메이션 실행
-      setTimeout(() => {
-        if (index >= currentAssets.length) return;
-        const newAsset = currentAssets[index];
-        const mediaContainer = card.querySelector('.card-media-placeholder');
-        const titleEl = card.querySelector('.meta-title');
-
-        if (!mediaContainer) return;
-
-        const oldSlide = mediaContainer.querySelector('.slide-item.active');
-        const newSlide = createMediaElement(newAsset);
-
-        // 새 슬라이드를 DOM에 추가
-        mediaContainer.appendChild(newSlide);
-
-        // DOM Reflow 강제 트리거 (트랜지션을 작동시키기 위함)
-        void newSlide.offsetWidth; 
-
-        // 타이틀 교체 (자연스러운 페이드 아웃/인)
-        if (titleEl) {
-          titleEl.style.opacity = '0';
-          setTimeout(() => {
-            titleEl.textContent = newAsset.title;
-            titleEl.style.opacity = '1';
-          }, 400); 
-        }
-
-        // 구형 슬라이드는 위로 올리고, 신형 슬라이드는 위로 나타나게 함
-        if (oldSlide) {
-          oldSlide.classList.remove('active');
-          oldSlide.classList.add('prev');
-        }
-        newSlide.classList.remove('next');
-        newSlide.classList.add('active');
-
-        // 슬라이드 모션(1초) 종료 후 메모리 최적화를 위해 이전 요소를 DOM에서 완전히 제거
-        setTimeout(() => {
-          if (oldSlide) oldSlide.remove();
-        }, 1000); 
-
-      }, index * 120); 
-    });
-  }, 5000); // 5초(5000ms) 대기
 }
 
 /* 9. Mobile Hamburger Navigation */
