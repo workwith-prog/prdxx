@@ -161,7 +161,7 @@ class SlidingPanels extends HTMLElement {
     this.#stage = this.#root.querySelector('.stage');
   }
 
-  get #interval() { return +this.getAttribute('interval') || 500; }
+  get #interval() { return +this.getAttribute('interval') || 200; }
   get #duration() { return this.#reducedMotion ? 600 : +this.getAttribute('duration') || 1400; }
   get #maxRatio() { return Math.max(1.05, +this.getAttribute('max-ratio') || 1.7); }
   get #minPanels() { return Math.max(1, +this.getAttribute('min-panels') || 6); }
