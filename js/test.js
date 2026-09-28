@@ -433,7 +433,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initInstagramFeed();
   initContactDrag();
   initContactForm();
-  initObjectInsideParallax();
   initSlidingPanels();
   initMobileMenu();
 });
