@@ -162,7 +162,7 @@ class SlidingPanels extends HTMLElement {
   }
 
   get #interval() { return +this.getAttribute('interval') || 50; }
-  get #duration() { return this.#reducedMotion ? 600 : +this.getAttribute('duration') || 1400; }
+  get #duration() { return this.#reducedMotion ? 600 : +this.getAttribute('duration') || 700; }
   get #maxRatio() { return Math.max(1.05, +this.getAttribute('max-ratio') || 1.7); }
   get #minPanels() { return Math.max(1, +this.getAttribute('min-panels') || 6); }
   get #gap() { return this.hasAttribute('gap') ? +this.getAttribute('gap') : 4; }
