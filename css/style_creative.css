@@ -168,8 +168,21 @@ p, h1, h2, h3 {
   background-color: #f0f0f0;
   border-bottom: 1px solid #000;
   box-sizing: border-box;
+  /* 가로 레이아웃이 부드럽게 변하도록 추가 */
+  transition: grid-template-columns 1s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
+/*
+.bs-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  width: 100%;
+  position: relative;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #000;
+  box-sizing: border-box;
+}
+*/
 .bs-card-col {
   display: flex;
   flex-direction: column;
@@ -189,7 +202,20 @@ p, h1, h2, h3 {
   overflow: hidden;
   border-bottom: 1px solid #000;
   box-sizing: border-box;
+  /* 세로 높이가 부드럽게 변하도록 추가 */
+  transition: height 1s cubic-bezier(0.85, 0, 0.15, 1);
 }
+
+/*
+.bs-card {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+  border-bottom: 1px solid #000;
+  box-sizing: border-box;
+}
+*/
 
 .bs-card-col .bs-card:last-child { border-bottom: none; }
 
