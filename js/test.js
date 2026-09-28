@@ -314,169 +314,36 @@ function initObjectInsideParallax() {
   animateObjects();
 }
 
-/* 8. Random Cards Generator (슬라이드 + 랜덤 레이아웃 효과) */
-function initRandomCards() {
+/* 8. 웹 컴포넌트 (Sliding Panels) 연동 */
+function initSlidingPanels() {
+  const panelElement = document.getElementById('hero-sliding-panels');
+  if (!panelElement) return;
+
+  // 기존에 사용하던 이미지 및 비디오 에셋의 URL만 추출
   const mediaAssets = [
-    { type: 'image', src: '/images/creative/main_top/img_01.jpg', title: 'Radio' },
-    { type: 'image', src: '/images/creative/main_top/img_02.jpg', title: 'Welcome Rain' },
-    { type: 'image', src: '/images/creative/main_top/img_03.jpg', title: 'Goods' },
-    { type: 'image', src: '/images/creative/main_top/img_04.jpg', title: 'Kedouin' },
-    { type: 'image', src: '/images/creative/main_top/img_05.jpg', title: 'Reframe5' },
-    { type: 'image', src: '/images/creative/main_top/img_06.jpg', title: 'Samsung' },
-    { type: 'image', src: '/images/creative/main_top/img_07.jpg', title: 'Art' },
-    { type: 'image', src: '/images/creative/main_top/img_08.jpg', title: '3D Graphic' },
-    { type: 'image', src: '/images/creative/main_top/img_09.jpg', title: 'Fun' },
-    { type: 'image', src: '/images/creative/main_top/img_10.jpg', title: 'Hedwig' },
-    { type: 'image', src: '/images/creative/main_top/img_11.jpg', title: 'Noodle World' },
-    { type: 'image', src: '/images/creative/main_top/img_12.jpg', title: 'Creative' },
-    { type: 'image', src: '/images/creative/main_top/img_13.jpg', title: 'Mountain' },
-    { type: 'image', src: '/images/creative/main_top/img_14.jpg', title: 'Megane' },
-    { type: 'image', src: '/images/creative/main_top/img_15.jpg', title: 'Lineage' },
-    { type: 'image', src: '/images/creative/main_top/img_16.jpg', title: 'Interior' },
-    { type: 'image', src: '/images/creative/main_top/img_17.jpg', title: 'Namecard' },
-    { type: 'image', src: '/images/creative/main_top/img_18.jpg', title: 'Poster' },
-    { type: 'image', src: '/images/creative/main_top/img_19.jpg', title: 'Graphic Design' },
-    { type: 'video', src: '/images/creative/main_top/video_01.mp4', title: 'KIA KBO' },
-    { type: 'video', src: '/images/creative/main_top/video_02.mp4', title: 'KGM Musso' },
-    { type: 'text', text: '/MORTARHEADD]', bgColor: '#ff0000', title: '' }
+    '/images/creative/main_top/img_01.jpg',
+    '/images/creative/main_top/img_02.jpg',
+    '/images/creative/main_top/img_03.jpg',
+    '/images/creative/main_top/img_04.jpg',
+    '/images/creative/main_top/img_05.jpg',
+    '/images/creative/main_top/img_06.jpg',
+    '/images/creative/main_top/img_07.jpg',
+    '/images/creative/main_top/img_08.jpg',
+    '/images/creative/main_top/img_09.jpg',
+    '/images/creative/main_top/img_10.jpg',
+    '/images/creative/main_top/img_11.jpg',
+    '/images/creative/main_top/img_12.jpg',
+    '/images/creative/main_top/img_13.jpg',
+    '/images/creative/main_top/img_14.jpg',
+    '/images/creative/main_top/img_15.jpg',
+    '/images/creative/main_top/img_16.jpg',
+    '/images/creative/main_top/img_17.jpg',
+    '/images/creative/main_top/img_18.jpg',
+    '/images/creative/main_top/img_19.jpg'
   ];
 
-  function shuffleArray(array) {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  }
-
-  const gridContainer = document.querySelector('.bs-cards-grid');
-  const cards = document.querySelectorAll('.bs-cards-grid .bs-card');
-  let currentAssets = shuffleArray(mediaAssets);
-
-  // 미디어 DOM을 생성하는 함수
-  function createMediaElement(asset) {
-    const slideItem = document.createElement('div');
-    slideItem.className = 'slide-item next';
-    if (asset.type === 'text') {
-      slideItem.classList.add('accent-bg');
-      if (asset.bgColor) slideItem.style.backgroundColor = asset.bgColor;
-      const textDiv = document.createElement('div');
-      textDiv.className = 'placeholder-text-graphic';
-      textDiv.textContent = asset.text;
-      slideItem.appendChild(textDiv);
-    } else if (asset.type === 'image') {
-      const img = document.createElement('img');
-      img.src = asset.src;
-      img.alt = asset.title || '';
-      slideItem.appendChild(img);
-    } else if (asset.type === 'video') {
-      const video = document.createElement('video');
-      video.autoplay = true;
-      video.muted = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.src = asset.src;
-      slideItem.appendChild(video);
-    }
-    return slideItem;
-  }
-
-  // 1. 초기 화면 렌더링
-  cards.forEach((card, index) => {
-    if (index >= currentAssets.length) return;
-    const asset = currentAssets[index];
-    const titleEl = card.querySelector('.meta-title');
-    const mediaContainer = card.querySelector('.card-media-placeholder');
-
-    if (!mediaContainer) return;
-    if (titleEl) titleEl.textContent = asset.title;
-
-    mediaContainer.innerHTML = ''; 
-    const initialSlide = createMediaElement(asset);
-    initialSlide.className = 'slide-item active';
-    mediaContainer.appendChild(initialSlide);
-  });
-
-  // --- 레이아웃 변형을 위한 설정값 ---
-  // 가로 컬럼 비율 경우의 수
-  const gridLayouts = [
-    '1fr 1fr 2fr', 
-    '2fr 1fr 1fr', 
-    '1fr 2fr 1fr',
-    '1.5fr 1fr 1.5fr'
-  ];
-  // 2, 3번째 컬럼의 세로 높이 클래스들
-  const midHeights = ['h-mid-1', 'h-mid-2', 'h-mid-3'];
-  const rightHeights = ['h-right-1', 'h-right-2'];
-
-  // 2. 5초 단위 슬라이드 및 레이아웃 교체 로직
-  setInterval(() => {
-    currentAssets = shuffleArray(mediaAssets);
-
-    // [레이아웃 변경 로직] - 데스크톱 해상도에서만 작동
-    if (window.innerWidth > 900) {
-      // 가로 비율 랜덤 적용
-      const randomGrid = gridLayouts[Math.floor(Math.random() * gridLayouts.length)];
-      gridContainer.style.gridTemplateColumns = randomGrid;
-      
-      // 세로 높이 클래스 랜덤 셔플
-      const midCards = document.querySelectorAll('.scroll-normal .bs-card');
-      const rightCards = document.querySelectorAll('.scroll-fast .bs-card');
-      const shuffledMid = shuffleArray(midHeights);
-      const shuffledRight = shuffleArray(rightHeights);
-      
-      midCards.forEach((card, i) => {
-        card.classList.remove('h-mid-1', 'h-mid-2', 'h-mid-3');
-        card.classList.add(shuffledMid[i]);
-      });
-      
-      rightCards.forEach((card, i) => {
-        card.classList.remove('h-right-1', 'h-right-2');
-        card.classList.add(shuffledRight[i]);
-      });
-    } else {
-      // 모바일 시 인라인 스타일 초기화 (모바일 CSS 규칙을 따르기 위함)
-      gridContainer.style.gridTemplateColumns = '';
-    }
-
-    // [이미지 교체 로직]
-    cards.forEach((card, index) => {
-      setTimeout(() => {
-        if (index >= currentAssets.length) return;
-        const newAsset = currentAssets[index];
-        const mediaContainer = card.querySelector('.card-media-placeholder');
-        const titleEl = card.querySelector('.meta-title');
-
-        if (!mediaContainer) return;
-
-        const oldSlide = mediaContainer.querySelector('.slide-item.active');
-        const newSlide = createMediaElement(newAsset);
-
-        mediaContainer.appendChild(newSlide);
-        void newSlide.offsetWidth; 
-
-        if (titleEl) {
-          titleEl.style.opacity = '0';
-          setTimeout(() => {
-            titleEl.textContent = newAsset.title;
-            titleEl.style.opacity = '1';
-          }, 400); 
-        }
-
-        if (oldSlide) {
-          oldSlide.classList.remove('active');
-          oldSlide.classList.add('prev');
-        }
-        newSlide.classList.remove('next');
-        newSlide.classList.add('active');
-
-        setTimeout(() => {
-          if (oldSlide) oldSlide.remove();
-        }, 1000); 
-      }, index * 120); 
-    });
-  }, 5000);
+  // 컴포넌트의 'images' 속성에 배열을 콤마(,)로 구분된 문자열로 주입
+  panelElement.setAttribute('images', mediaAssets.join(','));
 }
 
 /* 9. Mobile Hamburger Navigation */
@@ -567,6 +434,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactDrag();
   initContactForm();
   initObjectInsideParallax();
-  initRandomCards();
+  initSlidingPanels();
   initMobileMenu();
 });

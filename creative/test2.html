@@ -80,58 +80,14 @@
         <div class="bs-text-row">DESIGN</div>
       </div>
 
-      <div class="bs-cards-grid">
-        <div class="bs-card-col scroll-slow">
-          <div class="bs-card h-left-fixed">
-            <div class="card-meta-overlay"><span class="meta-title">Artistry</span></div>
-            <div class="card-media-placeholder"><img src="/images/portfolio/list_artistry.jpg" alt="Artistry"></div>
-          </div>
-          <div class="bs-card h-left-fixed">
-            <div class="card-meta-overlay"><span class="meta-title">Hyundai Mobed</span></div>
-            <div class="card-media-placeholder"><img src="/images/portfolio/list_mobed.jpg" alt="Hyundai Mobed"></div>
-          </div>
-          <div class="bs-card h-left-fixed">
-            <div class="card-meta-overlay"><span class="meta-title">Samsung</span></div>
-            <div class="card-media-placeholder"><img src="/images/portfolio/list_samsung.jpg" alt="Samsung"></div>
-          </div>
-          <div class="bs-card h-left-fixed">
-            <div class="card-meta-overlay"><span class="meta-title">Would you like me</span></div>
-            <div class="card-media-placeholder"><img src="/images/portfolio/list_wouldyou.jpg" alt="Would you like me"></div>
-          </div>
-        </div>
-
-        <div class="bs-card-col scroll-normal">
-          <div class="bs-card h-mid-1">
-            <div class="card-meta-overlay"><span class="meta-title"></span></div>
-            <div class="card-media-placeholder accent-bg">
-              <div class="placeholder-text-graphic">/MORTARHEADD]</div>
-            </div>
-          </div>
-          <div class="bs-card h-mid-2">
-            <div class="card-meta-overlay"><span class="meta-title">Sulwhasoo</span></div>
-            <div class="card-media-placeholder"><img src="/images/portfolio/img_work_shs.jpg" alt="Sulwhasoo"></div>
-          </div>
-          <div class="bs-card h-mid-3">
-            <div class="card-meta-overlay"><span class="meta-title">Dongwha</span></div>
-            <div class="card-media-placeholder"><img src="/images/portfolio/img_work_donghwa.jpg" alt="Dongwha"></div>
-          </div>
-        </div>
-
-        <div class="bs-card-col scroll-fast">
-          <div class="bs-card h-right-1">
-            <div class="card-meta-overlay"><span class="meta-title">Showreel 01</span></div>
-            <div class="card-media-placeholder">
-              <video autoplay muted loop playsinline src="https://mortarheadd.agency/video/agency_hero.mp4"></video>
-            </div>
-          </div>
-          <div class="bs-card h-right-2">
-            <div class="card-meta-overlay"><span class="meta-title">Showreel 02</span></div>
-            <div class="card-media-placeholder">
-              <video autoplay muted loop playsinline src="https://mortarheadd.agency/video/ott_hero.mp4"></video>
-            </div>
-          </div>
-        </div>
-      </div>
+    <sliding-panels 
+    id="hero-sliding-panels"
+    gap="2" 
+    interval="3500" 
+    relayout="10"
+    background="#f0f0f0"
+    style="width: 100%; height: calc(56.25vw + 3px); border-bottom: 1px solid #000;">
+    </sliding-panels>
     </section>
 
     <section class="slogan-section">
@@ -455,6 +411,7 @@
     </div>
   </footer>
 
+  <script type="module" src="/js/sliding-panels.js"></script>
   <script src="/js/team_script.js"></script>
   <script src="/js/test.js"></script>
 </body>
