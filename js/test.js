@@ -271,7 +271,6 @@ function initSmoothAnchors() {
 /* 7. Parallax System */
 function initObjectInsideParallax() {
   function animateObjects() {
-    // 수정: slide-item 자체를 움직이지 않고 그 안의 미디어만 미세하게 움직이도록 변경
     const parallaxObjects = document.querySelectorAll(
       ".card-media-placeholder .slide-item img, .card-media-placeholder .slide-item video, .card-media-placeholder .slide-item .placeholder-text-graphic"
     );
@@ -300,7 +299,9 @@ function initObjectInsideParallax() {
         }
 
         const moveY = (progress - 0.5) * speedFactor;
-        obj.style.transform = `translateY(${moveY}px) scale(1.05)`;
+        
+        // 수정된 부분: scale(1.05)를 제거하고 translateY만 남김
+        obj.style.transform = `translateY(${moveY}px)`; 
       }
     });
   }
