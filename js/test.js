@@ -271,8 +271,9 @@ function initSmoothAnchors() {
 /* 7. Parallax System */
 function initObjectInsideParallax() {
   function animateObjects() {
+    // 수정: slide-item 자체를 움직이지 않고 그 안의 미디어만 미세하게 움직이도록 변경
     const parallaxObjects = document.querySelectorAll(
-      ".card-media-placeholder img, .card-media-placeholder video, .placeholder-text-graphic"
+      ".card-media-placeholder .slide-item img, .card-media-placeholder .slide-item video, .card-media-placeholder .slide-item .placeholder-text-graphic"
     );
 
     if (window.innerWidth <= 900) {
