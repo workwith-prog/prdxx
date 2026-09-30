@@ -101,7 +101,7 @@ function initInstagramFeed() {
         const ACCESS_TOKEN = 'EAAOwnBLrA18BSheQZAbnoGCfZAKf5euPuDt6RmrEf8fVgXUVnxXQVD1rrv0e17BDLn44vd4R6zgXroarYjKziE6VZCdbVq5ZBwMY9k2cqVauzFTn75jraDivlHrFsYr1bXTtuxzA3ZCeSToGQJIIEsCKoXs1pVJ7YEN7T35pKYE7QjDciyviDMqa5zXwO7lJWfk7HsktoAQaopKR4xPqNrtjcZCzTCygSs5HiAdo5qaCEtuTK6PaPTSxth04e1vhBF6lfEfjYbqtdiYbjB3V3HS0r3hgZDZD';
 
         // 2. Step 2에서 확인한 17841... 로 시작하는 실제 인스타그램 계정 ID
-        const INSTAGRAM_ACCOUNT_ID = '17841413082626243';
+        const INSTAGRAM_ACCOUNT_ID = '17841446150503206';
 
         const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
         const url = `https://graph.facebook.com/v22.0/${INSTAGRAM_ACCOUNT_ID}/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
