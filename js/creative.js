@@ -1,22 +1,13 @@
-const instagramFallbackPosts = [
-  { title: "MORTARHEADD", image: "", url: "https://www.instagram.com/mortarheadd_creative/" },
-  { title: "Brand Identity", image: "", url: "https://www.instagram.com/mortarheadd_creative/" },
-  { title: "Campaign Visual", image: "", url: "https://www.instagram.com/mortarheadd_creative/" },
-  { title: "Motion Graphic", image: "", url: "https://www.instagram.com/mortarheadd_creative/" },
-  { title: "Poster Art", image: "", url: "https://www.instagram.com/mortarheadd_creative/" },
-  { title: "Digital Contents", image: "", url: "https://www.instagram.com/mortarheadd_creative/" }
-];
-
 const serviceVisuals = {
-  poster: "url('/images/creative/service/img_service_02.jpg')",
-  motion: "url('/images/creative/service/img_service_03.jpg')",
-  campaign: "url('/images/creative/service/img_service_04.jpg')",
-  digital: "url('/images/creative/service/img_service_05.jpg')",
-  concept: "url('/images/creative/service/img_service_01.jpg')"
+  concept: "/images/creative/service/img_service_01.jpg",
+  poster: "/images/creative/service/img_service_02.jpg",
+  motion: "/images/creative/service/img_service_03.jpg",
+  campaign: "/images/creative/service/img_service_04.jpg",
+  digital: "/images/creative/service/img_service_05.jpg"
 };
 
+/* 1. Reveal Motion */
 function initRevealAnimation() {
-  // [정렬 버그 수정]: 상단 Hero 그리드(.bs-card)는 CSS 타임라인이 처리하도록 타겟에서 완전히 제외합니다.
   const targets = document.querySelectorAll(".reveal-up, .reveal-text, .pipeline-card, .work-card");
 
   const observer = new IntersectionObserver(
@@ -27,17 +18,16 @@ function initRevealAnimation() {
         observer.unobserve(entry.target);
       });
     },
-    {
-      threshold: 0.16,
-      rootMargin: "0px 0px -8% 0px"
-    }
+    { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
   );
 
   targets.forEach((target) => observer.observe(target));
 }
 
+/* 2. Slogan Scroll Parallax */
 function initSloganMotion() {
   const lines = document.querySelectorAll(".slogan-line");
+  if (!lines.length) return;
 
   window.addEventListener(
     "scroll",
@@ -53,6 +43,7 @@ function initSloganMotion() {
   );
 }
 
+/* 3. Services Accordion System */
 function initServicesAccordion() {
   const items = document.querySelectorAll(".service-item");
   const preview = document.querySelector("#servicePreview");
@@ -63,40 +54,39 @@ function initServicesAccordion() {
   items.forEach((item) => {
     const trigger = item.querySelector(".service-trigger");
     const panel = item.querySelector(".service-panel");
+    const mobileImgBox = item.querySelector(".mobile-service-img");
 
     if (!trigger || !panel) return;
 
     trigger.addEventListener("click", () => {
-      // 이미 열려있는지 확인
       const isActive = item.classList.contains("is-active");
 
-      // 모든 아코디언 패널 초기화 (하나만 열리는 형태 원할 시)
       items.forEach((otherItem) => {
         otherItem.classList.remove("is-active");
         const otherPanel = otherItem.querySelector(".service-panel");
-        if (otherPanel) {
-          otherPanel.style.maxHeight = "0px";
-        }
+        if (otherPanel) otherPanel.style.maxHeight = "0px";
       });
 
-      // 클릭한 요소 토글 처리
       if (!isActive) {
         item.classList.add("is-active");
-        // 내부 스크롤 높이만큼 max-height를 dynamic하게 설정하여 부드럽게 펼침
-        panel.style.maxHeight = `${panel.scrollHeight}px`;
 
-        // 프리뷰 이미지 변경 스크립트 연동 (기존 기획 유지)
+        const key = item.dataset.service;
+        const targetImgSrc = serviceVisuals[key] || serviceVisuals.concept;
+
+        if (mobileImgBox) {
+          mobileImgBox.style.backgroundImage = `url('${targetImgSrc}')`;
+        }
+
+        panel.style.maxHeight = `${panel.scrollHeight + 200}px`;
+
         if (preview && previewImage) {
-          const key = item.dataset.service;
-          const targetImage = serviceVisuals[key] || serviceVisuals.concept;
-          previewImage.style.backgroundImage = targetImage;
+          previewImage.style.backgroundImage = `url('${targetImgSrc}')`;
           previewImage.style.backgroundSize = "cover";
           previewImage.style.backgroundPosition = "center";
           previewImage.style.backgroundRepeat = "no-repeat";
           preview.classList.add("is-visible");
         }
       } else {
-        // 이미 켜져있던 걸 다시 누르면 닫기
         item.classList.remove("is-active");
         panel.style.maxHeight = "0px";
         if (preview) preview.classList.remove("is-visible");
@@ -105,81 +95,125 @@ function initServicesAccordion() {
   });
 }
 
-async function loadInstagramPosts() {
-  if (Array.isArray(window.MORTARHEADD_INSTAGRAM_POSTS)) {
-    return window.MORTARHEADD_INSTAGRAM_POSTS;
-  }
+/* 4. Instagram Feed & Slider Logic */
+function initInstagramFeed() {
+        // 1. Step 3에서 연장한 60일 장기 토큰
+        const ACCESS_TOKEN = 'EAAOwnBLrA18BSrF1PfCdha6ZAWJra9lsWZC02p9guYOZCNxzXJZAa6csDaHirZCcdHr4sjAC6w18PJzVmZA1fgr0c6UB33bAbr7kP8uveXmrlZAzCtTqZAOW2FQCgAn6slEYiocZAj7xtRCtHL7fBbH7SF5MWHxdAItPRvTvOclilBnJlS62aQ7FCuV9jU8cqEQFGyaa8hwrr3ZCOpiJGLzWTSO8BIsZCckKosN6pZCFYgZDZD';
 
-  try {
-    const response = await fetch("./instagram.json", { cache: "no-store" });
-    if (!response.ok) throw new Error("instagram.json not found");
-    const data = await response.json();
-    if (Array.isArray(data)) return data;
-    if (Array.isArray(data.posts)) return data.posts;
-  } catch (error) {
-    return instagramFallbackPosts;
-  }
-  return instagramFallbackPosts;
+        // 2. Step 2에서 확인한 17841... 로 시작하는 실제 인스타그램 계정 ID
+        const INSTAGRAM_ACCOUNT_ID = '17841446150503206';
+
+        const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
+        const url = `https://graph.facebook.com/v22.0/${INSTAGRAM_ACCOUNT_ID}/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      const grid = document.getElementById('instafeed');
+      if (!grid || !data || !data.data) return;
+
+      const feeds = data.data.slice(0, 12);
+      feeds.forEach((feed) => {
+        if (!feed.media_url) return;
+
+        const anchor = document.createElement('a');
+        anchor.href = feed.permalink;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener';
+
+        const imageUrl = feed.media_type === 'VIDEO' ? feed.thumbnail_url : feed.media_url;
+        if (imageUrl) {
+          const img = document.createElement('img');
+          img.src = imageUrl;
+          img.alt = feed.caption || 'Instagram Image';
+          anchor.appendChild(img);
+        }
+
+        const captionDiv = document.createElement('div');
+        captionDiv.className = 'insta-caption';
+        captionDiv.textContent = feed.caption || '';
+        anchor.appendChild(captionDiv);
+
+        grid.appendChild(anchor);
+      });
+
+      initWorkSliderEvents();
+    })
+    .catch((err) => console.error('인스타그램 피드를 불러오는데 실패했습니다:', err));
 }
 
-function renderWorkPosts(posts) {
-  const slider = document.querySelector("#workSlider");
-  if (!slider) return;
+function initWorkSliderEvents() {
+  const grid = document.getElementById('instafeed');
+  const prevBtn = document.getElementById('slider-prev-btn');
+  const nextBtn = document.getElementById('slider-next-btn');
 
-  slider.innerHTML = "";
+  if (!grid || !prevBtn || !nextBtn) return;
 
-  posts.slice(0, 12).forEach((post, index) => {
-    const card = document.createElement("article");
-    card.className = "work-card reveal-up";
+  const getScrollAmount = () => grid.clientWidth * 0.8;
 
-    const link = document.createElement("a");
-    link.className = "work-thumb";
-    link.href = post.url || "https://www.instagram.com/mortarheadd_creative/";
-    link.target = "_blank";
-    link.rel = "noopener";
-
-    if (post.image) {
-      const image = document.createElement("img");
-      image.src = post.image;
-      image.alt = post.title || "Selected work";
-      image.loading = "lazy";
-      link.appendChild(image);
+  nextBtn.addEventListener('click', () => {
+    grid.style.scrollBehavior = 'smooth';
+    const maxScroll = grid.scrollWidth - grid.clientWidth;
+    if (grid.scrollLeft >= maxScroll - 5) {
+      grid.scrollLeft = 0;
     } else {
-      const fallback = document.createElement("div");
-      fallback.className = "work-fallback";
-      fallback.textContent = index % 2 === 0 ? "/ / /" : "PRDXX";
-      fallback.style.background = ["#2828ff", "#f2ff57", "#ff4814", "#f2b4d2", "#111", "#cfcfcf"][index % 6];
-      fallback.style.color = index === 1 || index === 3 || index === 5 ? "#111" : "#fff";
-      link.appendChild(fallback);
+      grid.scrollLeft += getScrollAmount();
     }
-
-    const title = document.createElement("p");
-    title.className = "work-title";
-    title.textContent = post.title || "Selected Work";
-
-    card.append(link, title);
-    slider.appendChild(card);
   });
 
-  initRevealAnimation();
+  prevBtn.addEventListener('click', () => {
+    grid.style.scrollBehavior = 'smooth';
+    if (grid.scrollLeft <= 5) {
+      grid.scrollLeft = grid.scrollWidth;
+    } else {
+      grid.scrollLeft -= getScrollAmount();
+    }
+  });
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  let isDragging = false;
+
+  grid.addEventListener('mousedown', (e) => {
+    isDown = true;
+    isDragging = false;
+    grid.style.scrollBehavior = 'auto';
+    startX = e.pageX - grid.offsetLeft;
+    scrollLeft = grid.scrollLeft;
+  });
+
+  grid.addEventListener('mouseleave', () => {
+    isDown = false;
+    grid.style.scrollBehavior = 'smooth';
+  });
+
+  grid.addEventListener('mouseup', () => {
+    isDown = false;
+    grid.style.scrollBehavior = 'smooth';
+  });
+
+  grid.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - grid.offsetLeft;
+    const walk = (x - startX) * 2;
+    if (Math.abs(walk) > 5) isDragging = true;
+    grid.scrollLeft = scrollLeft - walk;
+  });
+
+  grid.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+    link.addEventListener('dragstart', (e) => e.preventDefault());
+  });
 }
 
-function initWorkSlider() {
-  const slider = document.querySelector("#workSlider");
-  const prev = document.querySelector(".slider-btn.prev");
-  const next = document.querySelector(".slider-btn.next");
-
-  if (!slider || !prev || !next) return;
-
-  prev.addEventListener("click", () => {
-    slider.scrollBy({ left: -slider.clientWidth * 0.72, behavior: "smooth" });
-  });
-
-  next.addEventListener("click", () => {
-    slider.scrollBy({ left: slider.clientWidth * 0.72, behavior: "smooth" });
-  });
-}
-
+/* 5. Drag Panel */
 function initContactDrag() {
   const panel = document.querySelector("#dragPanel");
   if (!panel) return;
@@ -223,10 +257,9 @@ function initContactDrag() {
   );
 }
 
+/* 6. Smooth Scroll */
 function initSmoothAnchors() {
-  const links = document.querySelectorAll('a[href^="#"]');
-
-  links.forEach((link) => {
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (event) => {
       const href = link.getAttribute("href");
       if (!href || href === "#") return;
@@ -240,87 +273,171 @@ function initSmoothAnchors() {
   });
 }
 
-// 구형 mailto 가로채기 기능을 비활성화하고, HTML 하단의 GAS(Google Apps Script) 비동기 전송 로직과 일치시킵니다.
-function initContactForm() {
-  const form = document.querySelector("#contactForm");
-  if (!form) return;
-  // HTML 내부 인라인 스크립트가 폼 처리를 담당하므로 중복 이벤트 바인딩을 피하기 위해 비워둡니다.
-}
-
-
-
-
+/* 7. Parallax System */
 function initObjectInsideParallax() {
-  const parallaxObjects = document.querySelectorAll(
-    ".card-media-placeholder img, .card-media-placeholder video, .placeholder-text-graphic"
-  );
-
-  if (!parallaxObjects.length) return;
-
   function animateObjects() {
-    // 모바일(900px 이하) 환경에서는 연산 제외 및 트랜스폼 초기화
+    const parallaxObjects = document.querySelectorAll(
+      ".card-media-placeholder .slide-item img, .card-media-placeholder .slide-item video, .card-media-placeholder .slide-item .placeholder-text-graphic"
+    );
+
     if (window.innerWidth <= 900) {
-      parallaxObjects.forEach((obj) => {
-        obj.style.transform = "none";
-      });
+      parallaxObjects.forEach((obj) => { obj.style.transform = "none"; });
       return;
     }
 
     const windowHeight = window.innerHeight;
 
     parallaxObjects.forEach((obj) => {
-      // 오브젝트가 속한 부모 카드의 화면 상 위치 측정
       const card = obj.closest(".bs-card");
       if (!card) return;
 
       const rect = card.getBoundingClientRect();
-      
-      // 카드가 화면 내에 들어와 있을 때만 연산 처리 (성능 최적화)
+
       if (rect.top < windowHeight && rect.bottom > 0) {
-        // 화면 진입 시점부터 탈출 시점까지의 상대적 비율 계산 (0 ~ 1)
         const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
-        
-        // 각 열(Column)의 클래스에 따라 시차 속도와 방향 차별화
         const parentCol = obj.closest(".bs-card-col");
-        let speedFactor = 30; // 기본 움직임 범위 (px)
+        let speedFactor = 30;
 
         if (parentCol) {
-          if (parentCol.classList.contains("scroll-slow")) {
-            speedFactor = 45;  // 좌측 열: 좀 더 역동적으로 미끄러짐
-          } else if (parentCol.classList.contains("scroll-fast")) {
-            speedFactor = -35; // 우측 열: 반대 방향으로 교차 시차 부여
-          }
+          if (parentCol.classList.contains("scroll-slow")) speedFactor = 45;
+          else if (parentCol.classList.contains("scroll-fast")) speedFactor = -35;
         }
 
-        // 중앙값(0.5)을 기준으로 자연스러운 Y축 오프셋 밀어주기 (살짝 스케일을 키워 여백 노출 방지)
         const moveY = (progress - 0.5) * speedFactor;
-        obj.style.transform = `translateY(${moveY}px) scale(1.05)`;
+        
+        // 수정된 부분: scale(1.05)를 제거하고 translateY만 남김
+        obj.style.transform = `translateY(${moveY}px)`; 
       }
     });
   }
 
-  // 스크롤 이벤트 최적화 결합
   window.addEventListener("scroll", () => {
     window.requestAnimationFrame(animateObjects);
   }, { passive: true });
 
   window.addEventListener("resize", animateObjects);
-  animateObjects(); // 초기 실행
+  animateObjects();
 }
 
-// DOMContentLoaded 바인더 스택 유지 및 재가동
-document.addEventListener("DOMContentLoaded", async () => {
+/* 8. 웹 컴포넌트 (Sliding Panels) 연동 */
+function initSlidingPanels() {
+  const panelElement = document.getElementById('hero-sliding-panels');
+  if (!panelElement) return;
+
+  // 기존에 사용하던 이미지 및 비디오 에셋의 URL만 추출
+  const mediaAssets = [
+    '/images/creative/main_top/img_01.jpg',
+    '/images/creative/main_top/img_02.jpg',
+    '/images/creative/main_top/img_03.jpg',
+    '/images/creative/main_top/img_04.jpg',
+    '/images/creative/main_top/img_05.jpg',
+    '/images/creative/main_top/img_06.jpg',
+    '/images/creative/main_top/img_07.jpg',
+    '/images/creative/main_top/img_08.jpg',
+    '/images/creative/main_top/img_09.jpg',
+    '/images/creative/main_top/img_10.jpg',
+    '/images/creative/main_top/img_11.jpg',
+    '/images/creative/main_top/img_12.jpg',
+    '/images/creative/main_top/img_13.jpg',
+    '/images/creative/main_top/img_14.jpg',
+    '/images/creative/main_top/img_15.jpg',
+    '/images/creative/main_top/img_16.jpg',
+    '/images/creative/main_top/img_17.jpg',
+    '/images/creative/main_top/img_18.jpg',
+    '/images/creative/main_top/img_19.jpg'
+  ];
+
+  // 컴포넌트의 'images' 속성에 배열을 콤마(,)로 구분된 문자열로 주입
+  panelElement.setAttribute('images', mediaAssets.join(','));
+}
+
+/* 9. Mobile Hamburger Navigation */
+function initMobileMenu() {
+  const toggleBtn = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("#siteNav");
+  const header = document.querySelector(".site-header");
+  const navLinks = document.querySelectorAll("#siteNav a");
+
+  if (!toggleBtn || !nav) return;
+
+  toggleBtn.onclick = function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const isOpen = nav.classList.contains("is-open");
+    if (isOpen) {
+      nav.classList.remove("is-open");
+      if (header) header.classList.remove("is-open");
+      toggleBtn.classList.remove("is-active");
+      toggleBtn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    } else {
+      nav.classList.add("is-open");
+      if (header) header.classList.add("is-open");
+      toggleBtn.classList.add("is-active");
+      toggleBtn.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    }
+  };
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("is-open");
+      if (header) header.classList.remove("is-open");
+      toggleBtn.classList.remove("is-active");
+      toggleBtn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    });
+  });
+}
+
+/* 10. Contact Form (GAS Submitting) */
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const submitButton = this.querySelector('.form-submit');
+    submitButton.textContent = 'SENDING...';
+    submitButton.disabled = true;
+
+    const formData = new FormData(this);
+    const searchParams = new URLSearchParams(formData);
+    const gasUrl = "https://script.google.com/macros/s/AKfycbyJr2gnL_hnhtUdMc3AUBtH4mvpM2AZyBSiiCxqlsDrQv68CfrGHcaBG6IhQaddpvKS/exec";
+
+    fetch(gasUrl, {
+      method: 'POST',
+      body: searchParams,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+    .then(() => {
+      alert('문의가 성공적으로 접수되었습니다!');
+      form.reset();
+    })
+    .catch((error) => {
+      alert('전송 중 에러가 발생했습니다. 다시 시도해 주세요.');
+      console.error('Error:', error);
+    })
+    .finally(() => {
+      submitButton.textContent = 'SEND';
+      submitButton.disabled = false;
+    });
+  });
+}
+
+/* Master Initialization */
+document.addEventListener("DOMContentLoaded", () => {
   initSmoothAnchors();
   initRevealAnimation();
   initSloganMotion();
   initServicesAccordion();
-  initWorkSlider();
+  initInstagramFeed();
   initContactDrag();
   initContactForm();
-  
-  // 패러랙스 함수 엔진 실행
-  initObjectInsideParallax();
-
-  const posts = await loadInstagramPosts();
-  renderWorkPosts(posts);
+  initSlidingPanels();
+  initMobileMenu();
 });
