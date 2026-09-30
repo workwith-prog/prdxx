@@ -540,149 +540,150 @@
       </style>
 
       <script>
-        // 1. 발급받으신 EAA 토큰
         const ACCESS_TOKEN = 'EAAOwnBLrA18BSsDvmdONnKOt8eqh0sOl8aqjKSqAFlcyCDxRu5YQjLDmgOSfiGHZAhe6VpAD3Qp0PlPRDZANZBt73URCFtnUZCqlRmhZBkwi3t3HJyZCryrOghKwcPLCQ5PZCAZAzpP3sPWux2UuKqEnFGCsYblZBJ8zcA6I62CCdCw9vEzEectdjLvxw8vE7oIHWhHZChtghqnQo0zZAhybZCt2tY0GVVdiNZC6l4bI8JFGtuUZAqnxltbUiXN1yWoADa1tB4zDQgZB6O2QZBF5M98OVzupDVDF';
-
-        // 2. 계정 ID
-        const INSTAGRAM_ACCOUNT_ID = '1777703316735475';
-
         const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
 
-        // 3. [핵심] 주소를 graph.facebook.com 으로 교체
-        const url = `https://graph.facebook.com/v22.0/${INSTAGRAM_ACCOUNT_ID}/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
-/*
-        const ACCESS_TOKEN = 'EAAOwnBLrA18BSsDvmdONnKOt8eqh0sOl8aqjKSqAFlcyCDxRu5YQjLDmgOSfiGHZAhe6VpAD3Qp0PlPRDZANZBt73URCFtnUZCqlRmhZBkwi3t3HJyZCryrOghKwcPLCQ5PZCAZAzpP3sPWux2UuKqEnFGCsYblZBJ8zcA6I62CCdCw9vEzEectdjLvxw8vE7oIHWhHZChtghqnQo0zZAhybZCt2tY0GVVdiNZC6l4bI8JFGtuUZAqnxltbUiXN1yWoADa1tB4zDQgZB6O2QZBF5M98OVzupDVDF';
-        // 앞서 해결했던 영상 썸네일 표시를 위해 thumbnail_url 추가
-        const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
-        const url = `https://graph.instagram.com/me/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
-*/
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                const grid = document.getElementById('instafeed');
-                
-                if (!data || !data.data) {
-                    console.error('인스타그램 데이터를 찾을 수 없습니다.', data);
-                    return;
+        // 1. 토큰으로 연결된 Instagram 비즈니스 계정 ID를 먼저 찾은 후 피드를 가져옵니다.
+        fetch(`https://graph.facebook.com/v22.0/me/accounts?fields=instagram_business_account&access_token=${ACCESS_TOKEN}`)
+          .then(res => res.json())
+          .then(data => {
+            let igId = null;
+
+            if (data.data && data.data.length > 0) {
+              for (const page of data.data) {
+                if (page.instagram_business_account && page.instagram_business_account.id) {
+                  igId = page.instagram_business_account.id;
+                  break;
+                }
+              }
+            }
+
+            // 만약 조회되지 않을 경우를 대비한 대체 조회 (사용자에게 할당된 인스타 계정)
+            if (!igId) {
+              return fetch(`https://graph.facebook.com/v22.0/me?fields=id&access_token=${ACCESS_TOKEN}`)
+                .then(res => res.json())
+                .then(user => {
+                  throw new Error(`연결된 인스타그램 비즈니스 계정을 찾을 수 없습니다. Page/IG 연동 상태를 확인해 주세요. (User ID: ${user.id})`);
+                });
+            }
+
+            // 2. 정확한 Instagram Business Account ID로 미디어 호출
+            return fetch(`https://graph.facebook.com/v22.0/${igId}/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`);
+          })
+          .then(response => response.json())
+          .then(data => {
+            const grid = document.getElementById('instafeed');
+            if (!grid) return;
+
+            if (!data || !data.data || data.data.length === 0) {
+              console.error('인스타그램 피드 데이터가 비어있거나 에러입니다:', data);
+              return;
+            }
+
+            const feeds = data.data.slice(0, 12);
+
+            feeds.forEach(feed => {
+              if (feed.media_url || feed.thumbnail_url) {
+                const anchor = document.createElement('a');
+                anchor.href = feed.permalink;
+                anchor.target = '_blank';
+
+                const imageUrl = feed.media_type === 'VIDEO' ? feed.thumbnail_url : feed.media_url;
+
+                if (imageUrl) {
+                  const img = document.createElement('img');
+                  img.src = imageUrl;
+                  img.alt = feed.caption || 'Instagram Image';
+                  anchor.appendChild(img);
                 }
 
-                const feeds = data.data.slice(0, 12); 
+                const captionDiv = document.createElement('div');
+                captionDiv.className = 'insta-caption';
+                captionDiv.textContent = feed.caption || '';
+                anchor.appendChild(captionDiv);
 
-                feeds.forEach(feed => {
-                    if (feed.media_url) {
-                        const anchor = document.createElement('a');
-                        anchor.href = feed.permalink;
-                        anchor.target = '_blank';
+                grid.appendChild(anchor);
+              }
+            });
 
-                        // 1. 영상인 경우 썸네일, 이미지인 경우 원본 URL 사용 (이전 트러블슈팅 반영)
-                        const imageUrl = feed.media_type === 'VIDEO' ? feed.thumbnail_url : feed.media_url;
-
-                        if (imageUrl) {
-                            const img = document.createElement('img');
-                            img.src = imageUrl;
-                            img.alt = feed.caption || 'Instagram Image';
-                            anchor.appendChild(img);
-                        }
-
-                        // 2. 캡션(글) 요소 생성 및 삽입
-                        const captionDiv = document.createElement('div');
-                        captionDiv.className = 'insta-caption';
-                        captionDiv.textContent = feed.caption || ''; 
-                        anchor.appendChild(captionDiv);
-
-                        grid.appendChild(anchor);
-                    }
-                });
-
-                initSlider();
-            })
-            .catch(error => console.error('인스타그램 피드를 가져오는데 실패했습니다:', error));
+            initSlider();
+          })
+          .catch(error => {
+            console.error('인스타그램 연동 에러:', error);
+          });
 
         function initSlider() {
-            const grid = document.getElementById('instafeed');
-            const prevBtn = document.getElementById('slider-prev-btn');
-            const nextBtn = document.getElementById('slider-next-btn');
+          const grid = document.getElementById('instafeed');
+          const prevBtn = document.getElementById('slider-prev-btn');
+          const nextBtn = document.getElementById('slider-next-btn');
 
-            if(!grid || !prevBtn || !nextBtn) return;
+          if (!grid || !prevBtn || !nextBtn) return;
 
-            const getScrollAmount = () => grid.clientWidth * 0.8;
+          const getScrollAmount = () => grid.clientWidth * 0.8;
 
-            // --- 1. 좌우 화살표 버튼 스크롤 (처음/끝 도달 시 순환 로직 추가) ---
-            nextBtn.addEventListener('click', () => {
-                grid.style.scrollBehavior = 'smooth';
-                
-                // 최대 스크롤 가능 영역 계산
-                const maxScroll = grid.scrollWidth - grid.clientWidth;
-                
-                // 현재 스크롤 위치가 끝에 도달했는지 확인 (브라우저 소수점 오차를 고려해 -5px 여유)
-                if (grid.scrollLeft >= maxScroll - 5) {
-                    grid.scrollLeft = 0; // 맨 처음으로 이동
-                } else {
-                    grid.scrollLeft += getScrollAmount();
-                }
+          nextBtn.addEventListener('click', () => {
+            grid.style.scrollBehavior = 'smooth';
+            const maxScroll = grid.scrollWidth - grid.clientWidth;
+            if (grid.scrollLeft >= maxScroll - 5) {
+              grid.scrollLeft = 0;
+            } else {
+              grid.scrollLeft += getScrollAmount();
+            }
+          });
+
+          prevBtn.addEventListener('click', () => {
+            grid.style.scrollBehavior = 'smooth';
+            if (grid.scrollLeft <= 5) {
+              grid.scrollLeft = grid.scrollWidth;
+            } else {
+              grid.scrollLeft -= getScrollAmount();
+            }
+          });
+
+          let isDown = false;
+          let startX;
+          let scrollLeft;
+          let isDragging = false;
+
+          grid.addEventListener('mousedown', (e) => {
+            isDown = true;
+            isDragging = false;
+            grid.style.scrollBehavior = 'auto';
+            startX = e.pageX - grid.offsetLeft;
+            scrollLeft = grid.scrollLeft;
+          });
+
+          grid.addEventListener('mouseleave', () => {
+            isDown = false;
+            grid.style.scrollBehavior = 'smooth';
+          });
+
+          grid.addEventListener('mouseup', () => {
+            isDown = false;
+            grid.style.scrollBehavior = 'smooth';
+          });
+
+          grid.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - grid.offsetLeft;
+            const walk = (x - startX) * 2;
+            if (Math.abs(walk) > 5) {
+              isDragging = true;
+            }
+            grid.scrollLeft = scrollLeft - walk;
+          });
+
+          const links = grid.querySelectorAll('a');
+          links.forEach(link => {
+            link.addEventListener('click', (e) => {
+              if (isDragging) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
             });
-
-            prevBtn.addEventListener('click', () => {
-                grid.style.scrollBehavior = 'smooth';
-                
-                // 현재 스크롤 위치가 맨 앞인지 확인
-                if (grid.scrollLeft <= 5) {
-                    grid.scrollLeft = grid.scrollWidth; // 맨 끝으로 이동
-                } else {
-                    grid.scrollLeft -= getScrollAmount();
-                }
-            });
-
-            // --- 2. 마우스 드래그 스크롤 ---
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-            let isDragging = false;
-
-            grid.addEventListener('mousedown', (e) => {
-                isDown = true;
-                isDragging = false; 
-                grid.style.scrollBehavior = 'auto'; 
-                startX = e.pageX - grid.offsetLeft;
-                scrollLeft = grid.scrollLeft;
-            });
-
-            grid.addEventListener('mouseleave', () => {
-                isDown = false;
-                grid.style.scrollBehavior = 'smooth'; 
-            });
-
-            grid.addEventListener('mouseup', () => {
-                isDown = false;
-                grid.style.scrollBehavior = 'smooth'; 
-            });
-
-            grid.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault(); 
-                
-                const x = e.pageX - grid.offsetLeft;
-                const walk = (x - startX) * 2; 
-                
-                if (Math.abs(walk) > 5) {
-                    isDragging = true; 
-                }
-                
-                grid.scrollLeft = scrollLeft - walk;
-            });
-
-            // --- 3. 드래그 후 발생하는 부작용 방지 ---
-            const links = grid.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    if (isDragging) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                    }
-                });
-                
-                link.addEventListener('dragstart', (e) => e.preventDefault());
-            });
+            link.addEventListener('dragstart', (e) => e.preventDefault());
+          });
         }
       </script>
 
