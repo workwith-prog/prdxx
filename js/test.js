@@ -98,10 +98,10 @@ function initServicesAccordion() {
 /* 4. Instagram Feed & Slider Logic */
 function initInstagramFeed() {
         // 1. Step 3에서 연장한 60일 장기 토큰
-        const ACCESS_TOKEN = 'EAAOdBB6JxqIBSndPZCl4d7IhEdCMZCmzBppDu1WKaup9TzMzGpnyy7z3H2DmtKdCSPH8dZB50863AlrHDLIUM6sCeAX93xziZBQN48HyENgDp7I4fNeke4V3PVS00ZB6T9JSlj5zUnfi4FDTLSZATUJ34A1r57QlA0jOCXzGSASyzudHd0iMGCFTInbtv4TmpsDFTuD5OhG8ZASKszxdhMi9FXEfZAeji7NY013mtJZC7TyRrDQxHBilZAZCn8Tftf2WyaNd5QKDJStgoQTSFm0ulFlBEGJ';
+        const ACCESS_TOKEN = 'EAAOwnBLrA18BSgAvUEMuEOOKRe1Eqv3YQZAw6kojJYhV9l6dcbdwt97IBzZAyGJB5dDQN8KCzOt1VxkvT1gYOCZCqmywF2nXK4pl0hp7ez5kG9mSAyjWQBZB2y0011Xuxu3vYfxBX87xhkjZAdDN6ORXQAbxUZATK4KnZCIsLyvLv4pPVQz6ZC9ZBh2X8kJT7CeF90B9fdDRHqJmD4m5GQTeHHYbws0SwXB0n5o7KMvLbJS2yZA1D4cM3mmWEry8P1WobxZAkM7iWoramncwEZAlABAHTkZBIgBwZD';
 
         // 2. Step 2에서 확인한 17841... 로 시작하는 실제 인스타그램 계정 ID
-        const INSTAGRAM_ACCOUNT_ID = '1017065947907746';
+        const INSTAGRAM_ACCOUNT_ID = '17841413082626243';
 
         const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
         const url = `https://graph.facebook.com/v22.0/${INSTAGRAM_ACCOUNT_ID}/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
