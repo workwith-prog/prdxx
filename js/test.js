@@ -97,10 +97,14 @@ function initServicesAccordion() {
 
 /* 4. Instagram Feed & Slider Logic */
 function initInstagramFeed() {
-  const ACCESS_TOKEN = 'EAAOwnBLrA18BSsDvmdONnKOt8eqh0sOl8aqjKSqAFlcyCDxRu5YQjLDmgOSfiGHZAhe6VpAD3Qp0PlPRDZANZBt73URCFtnUZCqlRmhZBkwi3t3HJyZCryrOghKwcPLCQ5PZCAZAzpP3sPWux2UuKqEnFGCsYblZBJ8zcA6I62CCdCw9vEzEectdjLvxw8vE7oIHWhHZChtghqnQo0zZAhybZCt2tY0GVVdiNZC6l4bI8JFGtuUZAqnxltbUiXN1yWoADa1tB4zDQgZB6O2QZBF5M98OVzupDVDF';
-  const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
-  const INSTAGRAM_ACCOUNT_ID = '1038609308910431';
-  const url = `https://graph.facebook.com/v22.0/${INSTAGRAM_ACCOUNT_ID}/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
+        // 1. Step 3에서 연장한 60일 장기 토큰
+        const ACCESS_TOKEN = 'EAAOdBB6JxqIBSndPZCl4d7IhEdCMZCmzBppDu1WKaup9TzMzGpnyy7z3H2DmtKdCSPH8dZB50863AlrHDLIUM6sCeAX93xziZBQN48HyENgDp7I4fNeke4V3PVS00ZB6T9JSlj5zUnfi4FDTLSZATUJ34A1r57QlA0jOCXzGSASyzudHd0iMGCFTInbtv4TmpsDFTuD5OhG8ZASKszxdhMi9FXEfZAeji7NY013mtJZC7TyRrDQxHBilZAZCn8Tftf2WyaNd5QKDJStgoQTSFm0ulFlBEGJ';
+
+        // 2. Step 2에서 확인한 17841... 로 시작하는 실제 인스타그램 계정 ID
+        const INSTAGRAM_ACCOUNT_ID = '1017065947907746';
+
+        const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
+        const url = `https://graph.facebook.com/v22.0/${INSTAGRAM_ACCOUNT_ID}/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
 
   fetch(url)
     .then((res) => res.json())
