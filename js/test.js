@@ -97,9 +97,10 @@ function initServicesAccordion() {
 
 /* 4. Instagram Feed & Slider Logic */
 function initInstagramFeed() {
-  const ACCESS_TOKEN = 'IGAAoZCjdDsg6dBZAFllMjB1eWpDVzZACcjZAoZAEhJcFQzZAkRqd3lGNkhZAWVJ0eVBCZA3BjZAVk1a0hNbHR4a3NZARVpQdzZAVWFg2NFVfSkNUUldPaFkwc0NqbHdQM0pzVUsxTVNGbFJkbVVnTHQtZAG9JcVE3cEYtU2xIVlgySWJnOFI3SQZDZD';
+  const ACCESS_TOKEN = 'EAAOwnBLrA18BSsDvmdONnKOt8eqh0sOl8aqjKSqAFlcyCDxRu5YQjLDmgOSfiGHZAhe6VpAD3Qp0PlPRDZANZBt73URCFtnUZCqlRmhZBkwi3t3HJyZCryrOghKwcPLCQ5PZCAZAzpP3sPWux2UuKqEnFGCsYblZBJ8zcA6I62CCdCw9vEzEectdjLvxw8vE7oIHWhHZChtghqnQo0zZAhybZCt2tY0GVVdiNZC6l4bI8JFGtuUZAqnxltbUiXN1yWoADa1tB4zDQgZB6O2QZBF5M98OVzupDVDF';
   const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
-  const url = `https://graph.instagram.com/me/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
+  const INSTAGRAM_ACCOUNT_ID = '1038609308910431';
+  const url = `https://graph.facebook.com/v22.0/${INSTAGRAM_ACCOUNT_ID}/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
 
   fetch(url)
     .then((res) => res.json())
