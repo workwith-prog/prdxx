@@ -98,7 +98,7 @@ function initServicesAccordion() {
 /* 4. Instagram Feed & Slider Logic */
 function initInstagramFeed() {
         // 1. Step 3에서 연장한 60일 장기 토큰
-        const ACCESS_TOKEN = 'EAAOwnBLrA18BSrF1PfCdha6ZAWJra9lsWZC02p9guYOZCNxzXJZAa6csDaHirZCcdHr4sjAC6w18PJzVmZA1fgr0c6UB33bAbr7kP8uveXmrlZAzCtTqZAOW2FQCgAn6slEYiocZAj7xtRCtHL7fBbH7SF5MWHxdAItPRvTvOclilBnJlS62aQ7FCuV9jU8cqEQFGyaa8hwrr3ZCOpiJGLzWTSO8BIsZCckKosN6pZCFYgZDZD';
+        const ACCESS_TOKEN = 'EAAOwnBLrA18BSkqwNBNrHGpZC4knb9qRVUOvcDNmHgIkdTPxND73EgDpWrFeZCWYmIZCRDiLJxpKZAppkTF3mDG3EDp1ml4SMww1NlQNF9jeozcNqxHI8DCGNHyIpvXZCg6lr7LR9DTJ2FGvaZBGYudluGvH4qG2K78vy5jPvdyCMyZArveUqPaj674OSrquISwqnaXCvkHKueH1wSxxJo3WzkxHXMyjuXJSZCjxIUltpddp81qKC9ZCgwVBGK21zhMC5xpRvrkRZBNKuszbP7eD7p7yNi';
 
         // 2. Step 2에서 확인한 17841... 로 시작하는 실제 인스타그램 계정 ID
         const INSTAGRAM_ACCOUNT_ID = '17841446150503206';
