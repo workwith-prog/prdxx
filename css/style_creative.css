@@ -21,7 +21,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
 }
 
 body {
@@ -54,7 +54,7 @@ p, h1, h2, h3 {
   min-height: 100svh;
   height: auto;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
   box-sizing: border-box;
 }
 
