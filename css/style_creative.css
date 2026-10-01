@@ -722,6 +722,19 @@ p, h1, h2, h3 {
   background: var(--white);
 }
 
+/* Work Section Heading (02 Pipeline의 h2와 일치) */
+.work-heading {
+  font-family: var(--font-display);
+  font-size: clamp(66px, 6.2vw, 102px);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin-bottom: 24px;
+  word-break: break-all;
+}
+
+
 .insta-isolated-slider-container {
   position: relative;
   width: 100%;
@@ -1404,6 +1417,23 @@ p, h1, h2, h3 {
     width: min(240px, 68vw) !important;
     margin: 36px auto 40px auto !important;
     box-shadow: 10px 12px 0 rgba(0, 0, 0, 0.24) !important;
+  }
+
+
+  /* 태블릿 및 모바일 반응형 대응 */
+  @media (max-width: 900px) {
+    .work-heading {
+      font-size: clamp(38px, 9vw, 56px) !important;
+      line-height: 1.05 !important;
+      margin-bottom: 16px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .work-heading {
+      font-size: clamp(28px, 8.5vw, 42px) !important;
+      line-height: 1.1 !important;
+    }
   }
 
   #instafeed a {
