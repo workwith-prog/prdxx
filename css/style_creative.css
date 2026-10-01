@@ -21,7 +21,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -54,7 +54,8 @@ p, h1, h2, h3 {
   min-height: 100svh;
   height: auto;
   scroll-snap-align: start;
-  scroll-snap-stop: normal;
+  scroll-snap-stop: always;
+  box-sizing: border-box;
 }
 
 /* Header & Nav */
@@ -287,6 +288,8 @@ p, h1, h2, h3 {
   background: var(--white);
   overflow: hidden;
   scroll-snap-align: none;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
 .slogan-top {
