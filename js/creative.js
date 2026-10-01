@@ -6,6 +6,43 @@ const serviceVisuals = {
   digital: "/images/creative/service/img_service_05.jpg"
 };
 
+/* 0. Top 이미지 */
+/* Top Visual: 새로고침 교차 로드 & 스크롤 패럴랙스 */
+function initHeroTopParallax() {
+  const visualContainer = document.getElementById("heroTopVisual");
+  const visualImg = document.getElementById("heroTopVisualImg");
+  if (!visualContainer || !visualImg) return;
+
+  // 1. 새로고침 시마다 Top_1과 Top_2 교차 선택
+  const images = [
+    "/images/creative/top_img/Top_1.jpg",
+    "/images/creative/top_img/Top_2.jpg"
+  ];
+  const lastIndex = localStorage.getItem("last_hero_top_index");
+  const nextIndex = lastIndex === "0" ? 1 : 0;
+  localStorage.setItem("last_hero_top_index", nextIndex.toString());
+  visualImg.src = images[nextIndex];
+
+  // 2. 스크롤 패럴랙스 로직
+  function updateParallax() {
+    const rect = visualContainer.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // 화면 시야 영역에 위치할 때만 계산
+    if (rect.bottom > 0 && rect.top < windowHeight) {
+      const scrollProgress = -rect.top; // 스크롤 내릴수록 양수 증가
+      const speed = 0.22; // 패럴랙스 이동 강도
+      visualImg.style.transform = `translate3d(0, ${scrollProgress * speed}px, 0)`;
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    window.requestAnimationFrame(updateParallax);
+  }, { passive: true });
+
+  updateParallax();
+}
+
 /* 1. Reveal Motion */
 function initRevealAnimation() {
   const targets = document.querySelectorAll(".reveal-up, .reveal-text, .pipeline-card, .work-card");
@@ -431,6 +468,7 @@ function initContactForm() {
 
 /* Master Initialization */
 document.addEventListener("DOMContentLoaded", () => {
+  initHeroTopParallax();
   initSmoothAnchors();
   initRevealAnimation();
   initSloganMotion();

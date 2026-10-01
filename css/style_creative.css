@@ -137,6 +137,32 @@ p, h1, h2, h3 {
   height: auto;
 }
 
+/* 상단 히어로 비주얼 패럴랙스 컨테이너 */
+.hero-top-visual {
+  position: relative;
+  width: 100%;
+  /* 기존 텍스트 2줄의 실제 높이 영역 유지 (border-bottom 포함) */
+  height: clamp(260px, 42vw, 680px);
+  overflow: hidden;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #000;
+  z-index: 20;
+}
+
+.hero-top-visual img {
+  position: absolute;
+  top: -15%;
+  left: 0;
+  width: 100%;
+  height: 130%; /* 스크롤 이동을 위한 여유 높이 */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  will-change: transform;
+  transform: translateY(0);
+}
+
+
 .bs-typography-grid {
   display: flex;
   flex-direction: column;
