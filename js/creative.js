@@ -17,7 +17,6 @@ function initHeroTopParallax() {
   const images = [
     "/images/creative/top_img/Top_1.jpg",
     "/images/creative/top_img/Top_2.jpg"
-    "/images/creative/top_img/Top_3.jpg"
   ];
   const lastIndex = localStorage.getItem("last_hero_top_index");
   const nextIndex = lastIndex === "0" ? 1 : 0;
