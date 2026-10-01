@@ -720,8 +720,8 @@ p, h1, h2, h3 {
 #instafeed::-webkit-scrollbar { display: none !important; }
 
 #instafeed a {
-  flex: 0 0 calc(16.666% - 16.7px) !important;
-  width: calc(16.666% - 16.7px) !important;
+  flex: 0 0 calc(20% - 16px) !important;
+  width: calc(20% - 16px) !important;
   box-sizing: border-box !important;
   text-decoration: none !important;
   display: flex !important;
