@@ -1,14 +1,169 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>PRDXX's Work with</title>
-    <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; }
-    </style>
+<base target="_top">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MORTARHEADD CREATIVE DESIGN — Get in touch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --white:#f7f7f4; --blue:#2828ff; --yellow:#f2ff57; --soft-blue:#9698ff;
+  --font-display:"BIZ UDGothic",monospace;
+  --font-body:"Pretendard",-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --pad-x:clamp(22px,4.8vw,64px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--blue);color:var(--white)}
+body{font-family:var(--font-body);-webkit-font-smoothing:antialiased;min-height:100svh;
+  padding:max(22px,env(safe-area-inset-top)) var(--pad-x) max(32px,env(safe-area-inset-bottom))}
+a{color:inherit;text-decoration:none}
+.top{display:flex;justify-content:space-between;align-items:center}
+.brand{color:var(--yellow);font-family:"Apple SD Gothic Neo","AppleGothic","Pretendard",sans-serif;font-weight:700;font-size:clamp(15px,1.4vw,20px);letter-spacing:.02em;line-height:1}
+.top a.site{color:var(--yellow);font-weight:700;font-size:13px}
+.label{margin-top:28px;font-size:clamp(16px,1.55vw,22px)}
+.layout{display:grid;grid-template-columns:minmax(300px,.75fr) minmax(0,1.25fr);gap:clamp(48px,9vw,150px);margin-top:28px}
+.left{display:flex;flex-direction:column}
+h1{font-family:var(--font-display);font-weight:700;font-size:clamp(50px,5.1vw,86px);line-height:.96;text-transform:uppercase}
+.en{max-width:430px;margin-top:clamp(28px,4vw,56px);font-size:clamp(15px,1.15vw,18px);line-height:1.45}
+.ko{max-width:430px;margin-top:18px;font-size:clamp(13px,1vw,16px);line-height:1.6}
+.info{margin-top:auto;padding-top:56px}
+.info a{display:block;font-size:clamp(15px,1.25vw,20px);line-height:1.4}
+.drag{--k:clamp(26px,2.4vw,38px);--h:clamp(56px,7vw,100px);--w:94%;position:relative;height:calc(var(--h) + var(--k));
+  margin:calc(var(--k)/2) calc(var(--k)/2) 0;animation:none}
+.fill{position:absolute;top:0;left:0;width:var(--w);height:var(--h);background:var(--soft-blue);transition:width .15s ease-out}
+.knob{position:absolute;width:var(--k);height:var(--k);border-radius:50%;background:var(--white);z-index:2;touch-action:none}
+.knob::after{content:"";position:absolute;left:50%;width:6px;height:var(--h);background:var(--white);transform:translateX(-50%)}
+.knob.l{left:calc(var(--k)/-2);top:calc(var(--k)/-2)}.knob.l::after{top:calc(var(--k)/2)}
+.knob.r{left:calc(var(--w) - var(--k)/2);top:calc(var(--h) - var(--k)/2);cursor:ew-resize;transition:left .15s ease-out}.knob.r::after{bottom:calc(var(--k)/2)}
+form{margin-top:clamp(36px,5vw,72px)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(28px,3.6vw,56px);row-gap:clamp(26px,3vw,46px)}
+.row{border-bottom:1px solid rgba(247,247,244,.72);padding-bottom:18px}
+.row label{display:block;margin-bottom:26px;font-size:clamp(17px,1.5vw,26px);line-height:1}
+.row label .req{color:var(--yellow)}
+.row input,.row textarea{width:100%;border:0;outline:0;background:transparent;color:var(--white);
+  font-family:var(--font-body);font-size:16px;line-height:1.4;border-radius:0;-webkit-appearance:none}
+.row:focus-within{border-bottom-color:var(--yellow)}
+.msg{margin-top:clamp(40px,6vw,90px)}
+.msg textarea{min-height:clamp(140px,15vw,220px);resize:vertical}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.foot{display:flex;align-items:center;justify-content:flex-end;gap:18px;margin-top:clamp(28px,3vw,44px)}
+.status{font-size:14px;line-height:1.4;color:var(--yellow);flex:1}
+button{min-width:clamp(150px,14vw,230px);height:clamp(58px,5vw,84px);border:2px solid rgba(247,247,244,.9);border-radius:999px;
+  background:transparent;color:var(--white);font-family:var(--font-body);font-size:clamp(26px,2.4vw,44px);cursor:pointer;transition:background .15s,color .15s}
+button:hover:not(:disabled){background:var(--white);color:var(--blue)}
+button:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}
+button:disabled{opacity:.6;cursor:default}
+.done{display:none;margin-top:clamp(36px,5vw,72px)}
+.done h2{font-family:var(--font-display);font-size:clamp(40px,4.4vw,72px);line-height:1;text-transform:uppercase;color:var(--yellow)}
+.done p{margin-top:22px;font-size:16px;line-height:1.6;max-width:520px}
+.done .again{margin-top:28px;display:inline-block;border-bottom:1px solid var(--white);font-size:15px;cursor:pointer;background:none;border-radius:0;border-width:0 0 1px;min-width:0;height:auto;font-size:15px}
+.done .again:hover{background:none;color:var(--yellow)}
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;gap:36px}
+  .info{padding-top:28px}
+}
+@media (max-width:620px){
+  .brand{font-size:15px}
+  .top a.site{font-size:13px}
+  .label{margin-top:22px;font-size:16px}
+  h1{font-size:58px}
+  .en{font-size:17px;margin-top:26px}
+  .ko{font-size:15px}
+  .info a{font-size:16px;line-height:1.6}
+  .row label{font-size:18px;margin-bottom:18px}
+  .row input,.row textarea{font-size:17px}
+  .msg{margin-top:36px}
+  .grid{grid-template-columns:1fr}
+  .foot{flex-direction:column;align-items:stretch}
+  button{width:100%}
+  .status{text-align:center}
+}
+</style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbyXKtw4-8OutrQ99EJXw4VQqzIbiqoRzQoL4HFoUTzmrBtTIYD2APYYWZj6e6Imjxu1Kw/exec?src=ig"></iframe>
+<header class="top">
+  <a class="brand" href="https://mortarheadd.agency/creative/">MORTARHEADD CREATIVE DESIGN</a>
+  <a class="site" href="https://mortarheadd.agency/creative/">Website ↗</a>
+</header>
+
+<div class="label">Contact</div>
+
+<main class="layout">
+  <section class="left">
+    <h1>Get in<br>touch</h1>
+    <p class="en">For partnerships, project collaborations, feel free to reach out anytime.</p>
+    <p class="ko">함께할 프로젝트가 있다면 편하게 문의해 주세요.</p>
+    <div class="info">
+      <a href="mailto:workwith@mortarheadd.com">workwith@mortarheadd.com</a>
+      <a href="tel:+82231420107">+82 2 3142 0107</a>
+    </div>
+  </section>
+
+  <section class="right">
+    <div class="drag" id="drag" aria-hidden="true"><div class="knob l"></div><div class="fill"></div><div class="knob r"></div></div>
+
+    <form id="f" novalidate>
+      <div class="grid">
+        <div class="row"><label for="name">Name <span class="req">*</span></label><input id="name" name="name" type="text" autocomplete="name" maxlength="80" required></div>
+        <div class="row"><label for="email">E-mail <span class="req">*</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="120" required></div>
+        <div class="row"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30"></div>
+        <div class="row"><label for="address">Company / Address</label><input id="address" name="address" type="text" autocomplete="organization" maxlength="200"></div>
+      </div>
+      <div class="row msg"><label for="message">Text here <span class="req">*</span></label><textarea id="message" name="message" rows="7" maxlength="5000" required></textarea></div>
+      <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <input type="hidden" name="src" id="src" value="<?= src ?>">
+      <div class="foot"><div class="status" id="status" role="status" aria-live="polite"></div><button type="submit" id="send">SEND</button></div>
+    </form>
+
+    <div class="done" id="done">
+      <h2>Thank you</h2>
+      <p>제안이 접수되었습니다. 확인 후 입력하신 이메일로 연락드리겠습니다.<br>Your message has been sent — we'll get back to you soon.</p>
+      <button type="button" class="again" id="again">새 문의 작성하기</button>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var f=document.getElementById('f'),btn=document.getElementById('send'),st=document.getElementById('status'),
+      done=document.getElementById('done'),srcEl=document.getElementById('src');
+  // 정적 호스팅 시: GAS 템플릿 태그가 치환되지 않으므로 URL의 ?src= 사용
+  if(!srcEl.value||srcEl.value.charAt(0)==='<'){var m=location.search.match(/[?&]src=([^&]+)/);srcEl.value=m?decodeURIComponent(m[1]):'direct';}
+
+  function data(){var o={};new FormData(f).forEach(function(v,k){o[k]=String(v);});return o;}
+  function finish(res){
+    btn.disabled=false;btn.textContent='SEND';
+    if(res&&res.ok){f.reset();f.style.display='none';done.style.display='block';st.textContent='';window.scrollTo({top:0,behavior:'smooth'});}
+    else st.textContent=(res&&res.error)||'전송 중 오류가 발생했습니다. 다시 시도해 주세요.';
+  }
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var d=data();
+    if(!d.name.trim()||!d.email.trim()||!d.message.trim()){st.textContent='이름, 이메일, 내용을 입력해 주세요.';return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email.trim())){st.textContent='이메일 형식을 확인해 주세요.';return;}
+    btn.disabled=true;btn.textContent='SENDING…';st.textContent='';
+    if(window.google&&google.script&&google.script.run){
+      google.script.run.withSuccessHandler(finish).withFailureHandler(function(){finish(null);}).wwSubmit(d);
+    }else if(window.WW_ENDPOINT){
+      fetch(window.WW_ENDPOINT,{method:'POST',mode:'no-cors',body:new URLSearchParams(d)})
+        .then(function(){finish({ok:true});}).catch(function(){finish(null);});
+    }else finish(null);
+  });
+  document.getElementById('again').addEventListener('click',function(){done.style.display='none';f.style.display='block';});
+
+  // 상단 장식 바: 스크롤/드래그에 따라 폭이 변한다 (사이트 Contact 섹션과 같은 모티프)
+  var drag=document.getElementById('drag');
+  function setW(p){drag.style.setProperty('--w',Math.max(18,Math.min(100,p))+'%');}
+  var knob=drag.querySelector('.knob.r'),on=false;
+  knob.addEventListener('pointerdown',function(e){on=true;knob.setPointerCapture(e.pointerId);});
+  knob.addEventListener('pointermove',function(e){if(!on)return;var r=drag.getBoundingClientRect();setW((e.clientX-r.left)/r.width*100);});
+  knob.addEventListener('pointerup',function(){on=false;});
+  f.addEventListener('input',function(){var d=data(),n=['name','email','phone','address','message'].filter(function(k){return d[k].trim();}).length;setW(30+n*14);});
+  setW(30);
+})();
+</script>
 </body>
 </html>
