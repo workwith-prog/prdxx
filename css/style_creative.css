@@ -163,64 +163,11 @@ p, h1, h2, h3 {
   transform: translateY(0);
 }
 
-.bs-typography-grid {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid #000;
-  background-color: #f0f0f0;
-  z-index: 20;
+.sliding-panels {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
-
-.bs-text-row {
-  font-family: var(--font-display);
-  font-size: 25vw;
-  font-weight: 900;
-  line-height: 0.8;
-  letter-spacing: -0.05em;
-  padding: 15px 20px 5px 20px;
-  text-transform: uppercase;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.bs-text-row:last-child {
-  border-top: 1px solid #000;
-}
-
-.bs-cards-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  width: 100%;
-  position: relative;
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #000;
-  box-sizing: border-box;
-  transition: grid-template-columns 1s cubic-bezier(0.85, 0, 0.15, 1);
-}
-
-.bs-card-col {
-  display: flex;
-  flex-direction: column;
-  height: calc(56.25vw + 3px);
-  box-sizing: border-box;
-  transform: none !important;
-}
-
-.bs-card-col:not(:last-child) {
-  border-right: 1px solid #000;
-}
-
-.bs-card {
-  position: relative;
-  width: 100%;
-  background: #fff;
-  overflow: hidden;
-  border-bottom: 1px solid #000;
-  box-sizing: border-box;
-  transition: height 1s cubic-bezier(0.85, 0, 0.15, 1);
-}
-
-.bs-card-col .bs-card:last-child { border-bottom: none; }
 
 .h-left-fixed { height: calc(14.0625vw + 1px); }
 .bs-card-col:first-child .bs-card:last-child { height: 14.0625vw; }
@@ -269,11 +216,6 @@ p, h1, h2, h3 {
   display: block;
   will-change: transform;
   transform: translateY(0);
-}
-
-.bs-card:hover .card-media-placeholder img,
-.bs-card:hover .card-media-placeholder video {
-  filter: brightness(0.95);
 }
 
 .accent-bg { background-color: #ff0000; }
@@ -1212,9 +1154,10 @@ p, h1, h2, h3 {
     letter-spacing: 0.05em;
   }
 
-  .bs-cards-grid { grid-template-columns: 1fr; border-bottom: none; }
-  .bs-card-col { height: auto !important; }
-  .bs-card-col:not(:last-child) { border-right: none; border-bottom: 1px solid #000; }
+  .sliding-panels {
+    height: 56.25vw !important;
+    min-height: 280px !important;
+  }
   
   .h-left-fixed, .h-mid-1, .h-mid-2, .h-mid-3, .h-right-1, .h-right-2 {
     height: 56.25vw !important;
@@ -1405,6 +1348,11 @@ p, h1, h2, h3 {
   .slogan-band .slogan-line {
     padding-left: 22px;
     padding-right: 22px;
+  }
+
+  sliding-panels {
+    height: 65vw !important;
+    min-height: 260px !important;
   }
 
   .about-copy h1 { font-size: clamp(44px, 13vw, 68px); }
