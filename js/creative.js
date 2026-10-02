@@ -13,25 +13,28 @@ function initHeroTopParallax() {
   const visualImg = document.getElementById("heroTopVisualImg");
   if (!visualContainer || !visualImg) return;
 
-  // 1. 새로고침 시마다 Top_1과 Top_2 교차 선택
+  // 1. 3개 이미지 경로 설정
   const images = [
     "/images/creative/top_img/Top_1.jpg",
-    "/images/creative/top_img/Top_2.jpg"
+    "/images/creative/top_img/Top_2.jpg",
+    "/images/creative/top_img/Top_3.jpg"
   ];
-  const lastIndex = localStorage.getItem("last_hero_top_index");
-  const nextIndex = lastIndex === "0" ? 1 : 0;
+
+  // 2. 0 -> 1 -> 2 -> 0 순서로 순환 선택
+  const lastIndex = parseInt(localStorage.getItem("last_hero_top_index"), 10);
+  const nextIndex = isNaN(lastIndex) ? 0 : (lastIndex + 1) % images.length;
+
   localStorage.setItem("last_hero_top_index", nextIndex.toString());
   visualImg.src = images[nextIndex];
 
-  // 2. 스크롤 패럴랙스 로직
+  // 3. 스크롤 패럴랙스 로직
   function updateParallax() {
     const rect = visualContainer.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-    // 화면 시야 영역에 위치할 때만 계산
     if (rect.bottom > 0 && rect.top < windowHeight) {
-      const scrollProgress = -rect.top; // 스크롤 내릴수록 양수 증가
-      const speed = 0.22; // 패럴랙스 이동 강도
+      const scrollProgress = -rect.top;
+      const speed = 0.22;
       visualImg.style.transform = `translate3d(0, ${scrollProgress * speed}px, 0)`;
     }
   }
@@ -400,36 +403,9 @@ function initObjectInsideParallax() {
   animateObjects();
 }
 
-/* 8. 웹 컴포넌트 (Sliding Panels) 연동 */
+/* 8. 웹 컴포넌트 (Sliding Panels) 연동 - 매니페스트 파일 자동 로드로 대체 */
 function initSlidingPanels() {
-  const panelElement = document.getElementById('hero-sliding-panels');
-  if (!panelElement) return;
-
-  // 기존에 사용하던 이미지 및 비디오 에셋의 URL만 추출
-  const mediaAssets = [
-    '/images/creative/main_top/img_01.jpg',
-    '/images/creative/main_top/img_02.jpg',
-    '/images/creative/main_top/img_03.jpg',
-    '/images/creative/main_top/img_04.jpg',
-    '/images/creative/main_top/img_05.jpg',
-    '/images/creative/main_top/img_06.jpg',
-    '/images/creative/main_top/img_07.jpg',
-    '/images/creative/main_top/img_08.jpg',
-    '/images/creative/main_top/img_09.jpg',
-    '/images/creative/main_top/img_10.jpg',
-    '/images/creative/main_top/img_11.jpg',
-    '/images/creative/main_top/img_12.jpg',
-    '/images/creative/main_top/img_13.jpg',
-    '/images/creative/main_top/img_14.jpg',
-    '/images/creative/main_top/img_15.jpg',
-    '/images/creative/main_top/img_16.jpg',
-    '/images/creative/main_top/img_17.jpg',
-    '/images/creative/main_top/img_18.jpg',
-    '/images/creative/main_top/img_19.jpg'
-  ];
-
-  // 컴포넌트의 'images' 속성에 배열을 콤마(,)로 구분된 문자열로 주입
-  panelElement.setAttribute('images', mediaAssets.join(','));
+  // sliding-panels 컴포넌트가 folder 속성의 매니페스트를 직접 읽어 처리하므로 수동 주입 불필요
 }
 
 /* 9. Mobile Hamburger Navigation */
@@ -520,6 +496,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initInstagramFeed();
   initContactDrag();
   initContactForm();
-  initSlidingPanels();
   initMobileMenu();
 });
