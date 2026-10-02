@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap");
 
+
 :root {
   --black: #111;
   --white: #f7f7f4;
@@ -20,7 +21,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
 }
 
 body {
@@ -57,9 +58,7 @@ p, h1, h2, h3 {
   box-sizing: border-box;
 }
 
-/* ==========================================================================
-   Header & Navigation
-   ========================================================================== */
+/* Header & Nav */
 .site-header {
   position: fixed;
   z-index: 999;
@@ -122,9 +121,7 @@ p, h1, h2, h3 {
 .menu-toggle.is-active span:nth-child(2) { opacity: 0; }
 .menu-toggle.is-active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-/* ==========================================================================
-   Hero Section
-   ========================================================================== */
+/* Hero Section */
 #home {
   position: relative;
   width: 100%;
@@ -140,9 +137,11 @@ p, h1, h2, h3 {
   height: auto;
 }
 
+/* 상단 히어로 비주얼 패럴랙스 컨테이너 */
 .hero-top-visual {
   position: relative;
   width: 100%;
+  /* 기존 텍스트 2줄의 실제 높이 영역 유지 (border-bottom 포함) */
   height: clamp(260px, 42vw, 680px);
   overflow: hidden;
   background-color: #f0f0f0;
@@ -155,13 +154,14 @@ p, h1, h2, h3 {
   top: -15%;
   left: 0;
   width: 100%;
-  height: 130%;
+  height: 130%; /* 스크롤 이동을 위한 여유 높이 */
   object-fit: cover;
   object-position: center;
   display: block;
   will-change: transform;
   transform: translateY(0);
 }
+
 
 .bs-typography-grid {
   display: flex;
@@ -195,9 +195,21 @@ p, h1, h2, h3 {
   background-color: #f0f0f0;
   border-bottom: 1px solid #000;
   box-sizing: border-box;
+  /* 가로 레이아웃이 부드럽게 변하도록 추가 */
   transition: grid-template-columns 1s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
+/*
+.bs-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  width: 100%;
+  position: relative;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #000;
+  box-sizing: border-box;
+}
+*/
 .bs-card-col {
   display: flex;
   flex-direction: column;
@@ -217,8 +229,20 @@ p, h1, h2, h3 {
   overflow: hidden;
   border-bottom: 1px solid #000;
   box-sizing: border-box;
+  /* 세로 높이가 부드럽게 변하도록 추가 */
   transition: height 1s cubic-bezier(0.85, 0, 0.15, 1);
 }
+
+/*
+.bs-card {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+  border-bottom: 1px solid #000;
+  box-sizing: border-box;
+}
+*/
 
 .bs-card-col .bs-card:last-child { border-bottom: none; }
 
@@ -243,11 +267,7 @@ p, h1, h2, h3 {
   pointer-events: none;
 }
 
-.meta-title {
-  font-weight: bold;
-  color: #000000;
-  transition: opacity 0.4s ease;
-}
+.meta-title { font-weight: bold; color: #000000; }
 
 .card-media-placeholder {
   width: 100%;
@@ -277,7 +297,6 @@ p, h1, h2, h3 {
 }
 
 .accent-bg { background-color: #ff0000; }
-
 .placeholder-text-graphic {
   color: #fff;
   font-size: 1.5vw;
@@ -288,14 +307,13 @@ p, h1, h2, h3 {
   top: -7.5%;
 }
 
-/* ==========================================================================
-   Slogan Section
-   ========================================================================== */
+/* Slogan Section */
 .slogan-section {
   height: auto;
   min-height: 0;
   background: var(--white);
   overflow: hidden;
+  scroll-snap-align: none;
   scroll-snap-align: start;
   scroll-snap-stop: normal;
 }
@@ -334,9 +352,7 @@ p, h1, h2, h3 {
 
 .slogan-right { padding-left: 0; }
 
-/* ==========================================================================
-   General & Common Sections
-   ========================================================================== */
+/* General Section */
 .section {
   position: relative;
   padding: var(--pad-y) var(--pad-x);
@@ -356,24 +372,7 @@ p, h1, h2, h3 {
   color: var(--white);
 }
 
-.desc-en {
-  max-width: 520px;
-  margin-top: 34px;
-  font-size: clamp(14px, 1.2vw, 16px);
-  line-height: 1.6;
-}
-
-.desc-ko {
-  max-width: 560px;
-  margin-top: 18px;
-  font-family: var(--font-ko);
-  font-size: clamp(12px, 1.05vw, 16px);
-  line-height: 1.6;
-}
-
-/* ==========================================================================
-   About Section
-   ========================================================================== */
+/* About Section */
 .about-section {
   position: relative;
   min-height: 100svh;
@@ -457,9 +456,22 @@ p, h1, h2, h3 {
   line-height: 1.6;
 }
 
-/* ==========================================================================
-   Pipeline Section
-   ========================================================================== */
+.desc-en {
+  max-width: 520px;
+  margin-top: 34px;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.6;
+}
+
+.desc-ko {
+  max-width: 560px;
+  margin-top: 18px;
+  font-family: var(--font-ko);
+  font-size: clamp(12px, 1.05vw, 16px);
+  line-height: 1.6;
+}
+
+/* Pipeline Section */
 .pipeline-section {
   display: flex;
   flex-direction: column;
@@ -584,9 +596,7 @@ p, h1, h2, h3 {
 .pipeline-card:nth-child(2) .floating-icon { animation-delay: -1.2s; }
 .pipeline-card:nth-child(3) .floating-icon { animation-delay: -2.2s; }
 
-/* ==========================================================================
-   Services Section
-   ========================================================================== */
+/* Services Section */
 .services-section {
   background: linear-gradient(180deg, #d8d8d8 0%, #d8d8d8 48%, var(--yellow) 100%);
   overflow-x: hidden;
@@ -705,15 +715,14 @@ p, h1, h2, h3 {
   line-height: 1.45;
 }
 
-/* ==========================================================================
-   Work Section (3x3 Grid)
-   ========================================================================== */
+/* Work Section */
 .work-section {
   display: flex;
   flex-direction: column;
   background: var(--white);
 }
 
+/* Work Section Heading (02 Pipeline의 h2와 일치) */
 .work-heading {
   font-family: var(--font-display);
   font-size: clamp(66px, 6.2vw, 102px);
@@ -725,6 +734,8 @@ p, h1, h2, h3 {
   word-break: break-all;
 }
 
+/* 인스타 새로운 3x3 그리드 */
+/* Work Section - 3x3 Insta Grid */
 .insta-grid-wrapper {
   position: relative;
   width: 100%;
@@ -734,10 +745,10 @@ p, h1, h2, h3 {
 
 #instafeed {
   display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 1px !important;
-  background-color: #000000 !important;
-  border: 1px solid #000000 !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 1px !important; /* 이미지 사이의 1px 라인 두께 */
+  background-color: #000000 !important; /* 1px 라인 색상 */
+  border: 1px solid #000000 !important; /* 외곽 테두리 1px 라인 */
   width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -749,19 +760,16 @@ p, h1, h2, h3 {
   position: relative !important;
   display: block !important;
   width: 100% !important;
-  flex: none !important;
   background-color: #ffffff !important;
   text-decoration: none !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
 #instafeed img {
   width: 100% !important;
   height: 100% !important;
-  aspect-ratio: 3 / 4 !important;
+  aspect-ratio: 3 / 4 !important; /* 3:4 종횡비 강제 */
   object-fit: cover !important;
   object-position: center !important;
   display: block !important;
@@ -774,9 +782,107 @@ p, h1, h2, h3 {
   transform: scale(1.04) !important;
 }
 
+/* 캡션 텍스트는 그리드 레이아웃의 순수 비주얼을 위해 숨김 처리 (또는 호버 오버레이 가능) */
 #instafeed .insta-caption {
   display: none !important;
 }
+
+/* 모바일 화면 대응: 화면이 좁을 때도 3x3 유지 (또는 원하실 경우 1열/2열 전환 가능) */
+@media (max-width: 620px) {
+  .insta-grid-wrapper {
+    margin: 28px 0 40px;
+  }
+}
+
+/* 인스타 이전 css 백업
+
+.insta-isolated-slider-container {
+  position: relative;
+  width: 100%;
+  margin: 50px 0;
+  padding: 0;
+  display: block;
+  box-sizing: border-box;
+}
+
+#instafeed {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  padding: 10px 0;
+  margin: 0;
+  list-style: none;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+#instafeed:active { cursor: grabbing; }
+#instafeed::-webkit-scrollbar { display: none !important; }
+
+#instafeed a {
+  flex: 0 0 calc(20% - 16px) !important;
+  width: calc(20% - 16px) !important;
+  box-sizing: border-box !important;
+  text-decoration: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px;
+  color: #111 !important;
+}
+
+#instafeed img {
+  width: 100% !important;
+  max-width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease;
+  display: block !important;
+  margin: 0;
+  padding: 0;
+}
+
+#instafeed a:hover img { transform: scale(1.03); }
+
+.insta-caption {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  width: 70% !important;
+  text-align: left !important;
+  display: block !important;
+}
+
+.insta-arrow-btn {
+  position: absolute;
+  top: calc(50% - 30px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  font-size: 26px;
+  color: #333333;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.2s, transform 0.2s;
+  padding: 0 0 4px 0;
+}
+
+.insta-arrow-btn:hover { background-color: #f7f7f7; }
+.insta-arrow-btn.prev { left: -22px; }
+.insta-arrow-btn.next { right: -22px; }
+
+*/
 
 .latest-link {
   display: inline-flex;
@@ -792,7 +898,6 @@ p, h1, h2, h3 {
 }
 
 .latest-line { display: block; }
-
 .latest-bottom {
   display: inline-flex;
   align-items: center;
@@ -817,9 +922,7 @@ p, h1, h2, h3 {
   object-fit: contain;
 }
 
-/* ==========================================================================
-   Contact Section
-   ========================================================================== */
+/* Contact Section */
 .contact-section {
   display: flex;
   flex-direction: column;
@@ -840,8 +943,7 @@ p, h1, h2, h3 {
   min-height: 0;
 }
 
-.contact-left,
-.contact-right {
+.contact-left, .contact-right {
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -1007,9 +1109,7 @@ p, h1, h2, h3 {
   line-height: 1;
 }
 
-/* ==========================================================================
-   Footer Section
-   ========================================================================== */
+/* Footer Section */
 .footer {
   position: relative;
   min-height: 100svh;
@@ -1100,9 +1200,7 @@ p, h1, h2, h3 {
   background: transparent;
 }
 
-/* ==========================================================================
-   Animations & Sliding Panels
-   ========================================================================== */
+/* Animations */
 .reveal-up,
 .reveal-text {
   opacity: 0;
@@ -1127,36 +1225,11 @@ p, h1, h2, h3 {
   50% { transform: translateY(-28px); }
 }
 
-.slide-item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1); 
-  z-index: 1;
-}
-
-.slide-item.active {
-  transform: translateY(0);
-  z-index: 2;
-}
-
-.slide-item.next {
-  transform: translateY(100%);
-  z-index: 2;
-}
-
-.slide-item.prev {
-  transform: translateY(-100%);
-  z-index: 1;
-}
-
 /* ==========================================================================
-   Media Queries (Responsive)
+   Media Queries (Responsive Integrated)
    ========================================================================== */
 
-/* 1. Tablet (900px 이하) */
+/* Tablet (900px 이하) */
 @media (max-width: 900px) {
   .menu-toggle { display: flex !important; }
 
@@ -1215,18 +1288,14 @@ p, h1, h2, h3 {
   .bs-cards-grid { grid-template-columns: 1fr; border-bottom: none; }
   .bs-card-col { height: auto !important; }
   .bs-card-col:not(:last-child) { border-right: none; border-bottom: 1px solid #000; }
-  
   .h-left-fixed, .h-mid-1, .h-mid-2, .h-mid-3, .h-right-1, .h-right-2 {
     height: 56.25vw !important;
     border-bottom: 1px solid #000;
   }
-  
   .card-media-placeholder img, 
   .card-media-placeholder video, 
   .placeholder-text-graphic {
-    top: 0; 
-    height: 100%; 
-    transform: none !important;
+    top: 0; height: 100%; transform: none !important;
   }
 
   .about-section,
@@ -1357,25 +1426,9 @@ p, h1, h2, h3 {
   .service-list { max-width: 100% !important; position: relative; z-index: 1; }
   .service-trigger { font-size: clamp(38px, 9vw, 56px) !important; line-height: 1.05; }
 
-  /* Work Section 태블릿 대응 (3x3 유지) */
-  .work-heading {
-    font-size: clamp(38px, 9vw, 56px) !important;
-    line-height: 1.05 !important;
-    margin-bottom: 16px;
-  }
-
-  .insta-grid-wrapper {
-    margin: 32px 0 48px !important;
-  }
-
-  #instafeed {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 1px !important;
-  }
-
   #instafeed a {
-    flex: none !important;
-    width: 100% !important;
+    flex: 0 0 calc(33.333% - 13.4px) !important;
+    width: calc(33.333% - 13.4px) !important;
   }
 
   .contact-layout {
@@ -1390,7 +1443,7 @@ p, h1, h2, h3 {
   .footer-info { width: 100%; }
 }
 
-/* 2. Mobile (620px 이하) */
+/* Mobile (620px 이하) */
 @media (max-width: 620px) {
   :root { --pad-x: 22px; }
 
@@ -1412,6 +1465,7 @@ p, h1, h2, h3 {
   .about-copy .desc-ko { font-size: 13px; }
 
   .services-layout { gap: 34px !important; }
+
   .service-item { margin-bottom: 38px !important; }
 
   .service-trigger {
@@ -1428,31 +1482,31 @@ p, h1, h2, h3 {
     box-shadow: 10px 12px 0 rgba(0, 0, 0, 0.24) !important;
   }
 
-  /* Work Section 모바일 대응 (3x3 유지, 3:4 비율, 1px 구분선) */
-  .work-heading {
-    font-size: clamp(28px, 8.5vw, 42px) !important;
-    line-height: 1.1 !important;
+
+  /* 태블릿 및 모바일 반응형 대응 */
+  @media (max-width: 900px) {
+    .work-heading {
+      font-size: clamp(38px, 9vw, 56px) !important;
+      line-height: 1.05 !important;
+      margin-bottom: 16px;
+    }
   }
 
-  .insta-grid-wrapper {
-    margin: 24px 0 36px !important;
-  }
-
-  #instafeed {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 1px !important;
-    border: 1px solid #000000 !important;
+  @media (max-width: 620px) {
+    .work-heading {
+      font-size: clamp(28px, 8.5vw, 42px) !important;
+      line-height: 1.1 !important;
+    }
   }
 
   #instafeed a {
-    flex: none !important;
-    width: 100% !important;
+    flex: 0 0 calc(50% - 10px) !important;
+    width: calc(50% - 10px) !important;
   }
 
-  #instafeed img {
-    aspect-ratio: 3 / 4 !important;
-  }
+  .insta-arrow-btn.prev { left: -5px; }
+  .insta-arrow-btn.next { right: -5px; }
+  .insta-arrow-btn { width: 36px; height: 36px; font-size: 20px; }
 
   .contact-section { padding: var(--pad-y) var(--pad-x); }
   .form-grid { grid-template-columns: 1fr; }
@@ -1526,4 +1580,45 @@ p, h1, h2, h3 {
   }
 
   .footer-time { display: none !important; }
+}
+
+
+/* --- 슬라이딩 패널 효과 CSS --- */
+.card-media-placeholder {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 개별 미디어 래퍼 스타일 및 트랜지션 설정 */
+.slide-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* 맥OS 느낌의 부드럽고 탄력 있는 슬라이딩 곡선 (Cubic Bezier) */
+  transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1); 
+  z-index: 1;
+}
+
+.slide-item.active {
+  transform: translateY(0);
+  z-index: 2;
+}
+
+/* 다음에 올라올 이미지 (아래에 대기) */
+.slide-item.next {
+  transform: translateY(100%);
+  z-index: 2;
+}
+
+/* 지나간 이미지 (위로 밀려남) */
+.slide-item.prev {
+  transform: translateY(-100%);
+  z-index: 1;
+}
+
+/* 타이틀 텍스트 페이드 효과 */
+.meta-title {
+  transition: opacity 0.4s ease;
 }
