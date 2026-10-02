@@ -162,7 +162,7 @@ p, h1, h2, h3 {
   will-change: transform;
   transform: translateY(0);
 }
-
+1
 .sliding-panels {
   display: block !important;
   width: 100% !important;
