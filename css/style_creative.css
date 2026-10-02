@@ -734,6 +734,67 @@ p, h1, h2, h3 {
   word-break: break-all;
 }
 
+/* 인스타 새로운 3x3 그리드 */
+/* Work Section - 3x3 Insta Grid */
+.insta-grid-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 40px 0 60px;
+  box-sizing: border-box;
+}
+
+#instafeed {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 1px !important; /* 이미지 사이의 1px 라인 두께 */
+  background-color: #000000 !important; /* 1px 라인 색상 */
+  border: 1px solid #000000 !important; /* 외곽 테두리 1px 라인 */
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+  overflow: hidden !important;
+}
+
+#instafeed a {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  background-color: #ffffff !important;
+  text-decoration: none !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+#instafeed img {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 3 / 4 !important; /* 3:4 종횡비 강제 */
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transition: transform 0.4s ease;
+}
+
+#instafeed a:hover img {
+  transform: scale(1.04) !important;
+}
+
+/* 캡션 텍스트는 그리드 레이아웃의 순수 비주얼을 위해 숨김 처리 (또는 호버 오버레이 가능) */
+#instafeed .insta-caption {
+  display: none !important;
+}
+
+/* 모바일 화면 대응: 화면이 좁을 때도 3x3 유지 (또는 원하실 경우 1열/2열 전환 가능) */
+@media (max-width: 620px) {
+  .insta-grid-wrapper {
+    margin: 28px 0 40px;
+  }
+}
+
+/* 인스타 이전 css 백업
 
 .insta-isolated-slider-container {
   position: relative;
@@ -820,6 +881,8 @@ p, h1, h2, h3 {
 .insta-arrow-btn:hover { background-color: #f7f7f7; }
 .insta-arrow-btn.prev { left: -22px; }
 .insta-arrow-btn.next { right: -22px; }
+
+*/
 
 .latest-link {
   display: inline-flex;

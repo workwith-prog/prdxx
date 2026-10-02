@@ -132,7 +132,50 @@ function initServicesAccordion() {
   });
 }
 
-/* 4. Instagram Feed & Slider Logic */
+/* 4. Instagram Feed (3x3 Grid) */
+function initInstagramFeed() {
+  const ACCESS_TOKEN = 'EAAOwnBLrA18BSrA0FOWdmJnekUYp5qKOXdzDQgOQqN0PwnPMetduTZC4pwEzXpjF2JE7onGWU2zAyFrfYR7VVKTi9facfuo9sWBnTOfUJmYsGZAxMdGSZBjtQHrreijsh2c8OZBDYZCu9zRZAaFJ6r1eVsyK3iH3QbIxVMh4CyioLUcuULdXcXkoHHa0bn';
+  const INSTAGRAM_ACCOUNT_ID = '17841446150503206';
+
+  const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
+  const url = `https://graph.facebook.com/v22.0/${INSTAGRAM_ACCOUNT_ID}/media?fields=${FIELDS}&access_token=${ACCESS_TOKEN}`;
+
+  fetch(url)
+    .then((res) => {
+      if (!res.ok) {
+        return res.json().then((err) => { throw err; });
+      }
+      return res.json();
+    })
+    .then((data) => {
+      const grid = document.getElementById('instafeed');
+      if (!grid || !data || !data.data) return;
+
+      grid.innerHTML = ''; // 기존 콘텐츠 초기화
+
+      // 3x3 배치를 위해 정확히 9개 추출
+      const feeds = data.data.slice(0, 9);
+      feeds.forEach((feed) => {
+        const imageUrl = feed.media_type === 'VIDEO' ? feed.thumbnail_url : feed.media_url;
+        if (!imageUrl) return;
+
+        const anchor = document.createElement('a');
+        anchor.href = feed.permalink;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = feed.caption || 'Instagram Work Image';
+        anchor.appendChild(img);
+
+        grid.appendChild(anchor);
+      });
+    })
+    .catch((err) => console.error('인스타그램 피드 로드 실패:', err));
+}
+
+/* 4. Instagram Feed & Slider Logic 
 function initInstagramFeed() {
         // 1. Step 3에서 연장한 60일 장기 토큰
         const ACCESS_TOKEN = 'EAAOwnBLrA18BSrA0FOWdmJnekUYp5qKOXdzDQgOQqN0PwnPMetduTZC4pwEzXpjF2JE7onGWU2zAyFrfYR7VVKTi9facfuo9sWBnTOfUJmYsGZAxMdGSZBjtQHrreijsh2c8OZBDYZCu9zRZAaFJ6r1eVsyK3iH3QbIxVMh4CyioLUcuULdXcXkoHHa0bn';
@@ -178,6 +221,7 @@ function initInstagramFeed() {
     })
     .catch((err) => console.error('인스타그램 피드를 불러오는데 실패했습니다:', err));
 }
+*/
 
 function initWorkSliderEvents() {
   const grid = document.getElementById('instafeed');
