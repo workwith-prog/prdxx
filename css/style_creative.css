@@ -136,8 +136,14 @@ p, h1, h2, h3 {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  min-height: auto;
-  height: auto;
+}
+
+#hero-sliding-panels,
+sliding-panels {
+  display: block !important;
+  width: 100% !important;
+  height: calc(56.25vw + 3px);
+  box-sizing: border-box !important;
 }
 
 .hero-top-visual {
@@ -148,6 +154,7 @@ p, h1, h2, h3 {
   background-color: #f0f0f0;
   border-bottom: 1px solid #000;
   z-index: 20;
+  flex-shrink: 0;
 }
 
 .hero-top-visual img {
@@ -1336,6 +1343,27 @@ p, h1, h2, h3 {
 /* 2. Mobile (620px 이하) */
 @media (max-width: 620px) {
   :root { --pad-x: 22px; }
+
+  /* 1. 홈 섹션 전체를 정확히 뷰포트 높이로 고정 */
+  #home {
+    height: 100svh !important;
+    min-height: 100svh !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* 2. 상단 비주얼 높이는 그대로 유지 */
+  .hero-top-visual {
+    flex-shrink: 0 !important;
+  }
+
+  /* 3. 슬라이딩 패널이 나머지 화면 높이를 빈틈없이 100% 채움 */
+  #hero-sliding-panels,
+  sliding-panels {
+    flex: 1 1 0% !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
 
   .brand { width: 76px; }
 
