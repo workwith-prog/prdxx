@@ -1359,9 +1359,9 @@ p, h1, h2, h3 {
 
   /* Work Section 태블릿 대응 (3x3 유지) */
   .work-heading {
-    font-size: clamp(38px, 9vw, 56px) !important;
-    line-height: 1.05 !important;
-    margin-bottom: 16px;
+    font-size: clamp(1.4rem, 5.5vw, 2.2rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 20px;
   }
 
   .insta-grid-wrapper {
@@ -1430,8 +1430,9 @@ p, h1, h2, h3 {
 
   /* Work Section 모바일 대응 (3x3 유지, 3:4 비율, 1px 구분선) */
   .work-heading {
-    font-size: clamp(28px, 8.5vw, 42px) !important;
-    line-height: 1.1 !important;
+    font-size: clamp(1.4rem, 5.5vw, 2.2rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 16px;
   }
 
   .insta-grid-wrapper {
