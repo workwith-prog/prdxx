@@ -137,7 +137,7 @@ function initServicesAccordion() {
 
 /* 4. Instagram Feed (3x3 Grid) */
 function initInstagramFeed() {
-  const ACCESS_TOKEN = 'EAAOwnBLrA18BSrA0FOWdmJnekUYp5qKOXdzDQgOQqN0PwnPMetduTZC4pwEzXpjF2JE7onGWU2zAyFrfYR7VVKTi9facfuo9sWBnTOfUJmYsGZAxMdGSZBjtQHrreijsh2c8OZBDYZCu9zRZAaFJ6r1eVsyK3iH3QbIxVMh4CyioLUcuULdXcXkoHHa0bn';
+  const ACCESS_TOKEN = 'EAAOwnBLrA18BSjN0cxtN5CulMZC78ZCiEWfvUy3fdJU6JYOWQJJMu7swHEbeDCkmPOc3v9qazTOBADwL0ZCvRSHyREinbKiNEoSIYxHTncv5W7ZAZAfGIgdzvbRBPM0yWUCyT5nNNHDYBVzVEHsGMiIPnQD3S5xcZBz06dhntTSVccmdYtljReCaSr8hwu2FQY';
   const INSTAGRAM_ACCOUNT_ID = '17841446150503206';
 
   const FIELDS = 'id,media_type,media_url,thumbnail_url,permalink,caption';
